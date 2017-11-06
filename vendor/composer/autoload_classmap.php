@@ -6,4 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Pwacommerce\\Core\\Pwacommerce' => $baseDir . '/core/class-pwacommerce.php',
+    'Pwacommerce\\Includes\\Options' => $baseDir . '/includes/class-options.php',
 );

@@ -20,11 +20,17 @@ class ComposerStaticInit3da414801e6930212dbed7fe6dec735d
         ),
     );
 
+    public static $classMap = array (
+        'Pwacommerce\\Core\\Pwacommerce' => __DIR__ . '/../..' . '/core/class-pwacommerce.php',
+        'Pwacommerce\\Includes\\Options' => __DIR__ . '/../..' . '/includes/class-options.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit3da414801e6930212dbed7fe6dec735d::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit3da414801e6930212dbed7fe6dec735d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit3da414801e6930212dbed7fe6dec735d::$classMap;
 
         }, null, ClassLoader::class);
     }
