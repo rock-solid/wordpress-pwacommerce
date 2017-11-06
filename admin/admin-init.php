@@ -56,6 +56,9 @@ class Admin_Init {
 	 */
 	public function enqueue_scripts() {
 
+		$pwacommerce_options = new Options();
+		wp_enqueue_style( $pwacommerce_options->prefix . 'css_general', plugins_url( PWACOMMERCE_DOMAIN . '/admin/css/general.css' ), [], PWACOMMERCE_VERSION );
+
 
 	}
 
