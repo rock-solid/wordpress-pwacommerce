@@ -12,7 +12,7 @@ class Options {
 
 	public $options = [
 		'icon' => '',
-		'google_analytics_id' => '',
+		'analytics_id' => '',
 		'joined_subscriber_list' => 0,
 		'service_worker_installed' => 0
 	];
