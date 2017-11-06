@@ -21,8 +21,9 @@ class ComposerStaticInit3da414801e6930212dbed7fe6dec735d
     );
 
     public static $classMap = array (
-        'Pwacommerce\\Core\\Pwacommerce' => __DIR__ . '/../..' . '/core/class-pwacommerce.php',
-        'Pwacommerce\\Includes\\Options' => __DIR__ . '/../..' . '/includes/class-options.php',
+        'PWAcommerce\\Admin\\Admin_Init' => __DIR__ . '/../..' . '/admin/admin-init.php',
+        'PWAcommerce\\Core\\PWAcommerce' => __DIR__ . '/../..' . '/core/class-pwacommerce.php',
+        'PWAcommerce\\Includes\\Options' => __DIR__ . '/../..' . '/includes/class-options.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

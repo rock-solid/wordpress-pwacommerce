@@ -1,5 +1,5 @@
 <?php
-namespace Pwacommerce\Includes;
+namespace PWAcommerce\Includes;
 
 /**
  * Overall Option Management class.
