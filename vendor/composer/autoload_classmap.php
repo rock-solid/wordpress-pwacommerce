@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'PWAcommerce\\Admin\\Admin_Ajax' => $baseDir . '/admin/class-admin-ajax.php',
     'PWAcommerce\\Admin\\Admin_Init' => $baseDir . '/admin/admin-init.php',
     'PWAcommerce\\Core\\PWAcommerce' => $baseDir . '/core/class-pwacommerce.php',
     'PWAcommerce\\Includes\\Options' => $baseDir . '/includes/class-options.php',
