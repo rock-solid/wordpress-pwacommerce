@@ -1,0 +1,14 @@
+{
+  "name": "pwacommerce",
+  "version": "1.0.0",
+  "description": "Automatic compiling for css & js files",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-minify": "^1.0.0",
+    "gulp-sass": "^3.1.0"
+  },
+  "author": "Alexandra Anghel",
+  "license": "ISC",
+  "devDependencies": {}
+}
