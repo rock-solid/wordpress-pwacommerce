@@ -1,0 +1,46 @@
+#pwacommerce-admin {
+  .right-side {
+    .container {
+      padding: 10px;
+      padding-top: 2px;
+    }
+
+    .added {
+      margin: 0 auto;
+
+      .switcher {
+        width: 190px;
+        max-width: 90%;
+
+        .msg,
+        .check {
+          border: 1px solid $input-border;
+          line-height: 38px;
+          text-align: center;
+        }
+        .msg {
+          width: 75%;
+          float: left;
+          @include wbz-border-radius($input-radius 0 0 $input-radius);
+          background: $input-background;
+          color: $input-color;
+          border-right: 0px;
+        }
+        .check {
+          width: 20%;
+          float: left;
+          @include wbz-border-radius(0 $input-radius $input-radius 0);
+          background: $base-green;
+          color: #ffffff;
+          border-left: 0px;
+
+          span {
+            line-height: 38px;
+            font-size: 25px;
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
+}

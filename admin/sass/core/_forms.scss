@@ -1,0 +1,66 @@
+#pwacommerce-admin {
+  form {
+    text-align: left;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="file"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 300px;
+    max-width: 90%;
+
+    margin: 0 0 15px;
+    border: 1px solid $input-border;
+    background: $input-background;
+    color: $input-color;
+    @include wbz-border-radius($input-radius);
+    @include wbz-box-shadow(none);
+
+    &:focus {
+      outline: none;
+      border: 1px solid darken($input-border, $darken-amounth);
+    }
+    &.error {
+      border-color: $error-color;
+      background: $error-bg;
+    }
+  }
+
+  label {
+    color: $label-color;
+  }
+
+  label.textinput {
+    width: 200px;
+    float: left;
+    margin: 5px 5px 0 0;
+  }
+
+  .field-message {
+    margin: 0 0 5px 10px;
+    @include wbz-box-shadow(none);
+    background: transparent;
+    border: 0;
+
+    span {
+      line-height: 20px;
+    }
+    &.error {
+      span {
+        color: $error-color;
+      }
+    }
+    &.success {
+      span {
+        color: $success-color;
+      }
+    }
+    &.warning {
+      span {
+        color: $warning-color;
+      }
+    }
+  }
+}
