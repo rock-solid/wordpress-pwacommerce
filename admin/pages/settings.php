@@ -43,6 +43,10 @@ $service_worker_installed = $pwacommerce_options->get_setting( 'service_worker_i
 				<a href="javascript:void(0)" id="pwacommerce_settings_send_btn" class="button button-primary button-large">Save</a>
 			</form>
 		</div>
+		<div class="right-side">
+			<?php include_once( PWACOMMERCE_PLUGIN_PATH . 'admin/sections/subscribe.php' ); ?>
+			<div class="spacer-0"></div>
+		</div>
 	</div>
 </div>
 
