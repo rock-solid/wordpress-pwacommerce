@@ -14,7 +14,7 @@ class Uploads
 {
 
 
-	public $allowed_files = [
+	public static $allowed_files = [
 		'icon' => [
 			'max_width' => 256,
 			'max_height' => 256,
@@ -23,9 +23,9 @@ class Uploads
 	];
 
 
-	public $manifest_sizes = [48, 96, 144, 196];
+	public static $manifest_sizes = [48, 96, 144, 196];
 
-	protected $htaccess_template = 'frontend/sections/htaccess-template.txt';
+	protected static $htaccess_template = 'frontend/sections/htaccess-template.txt';
 
 	/**
 	 *
@@ -107,7 +107,7 @@ class Uploads
 
 		$image_path = $pwacommerce_options->get_setting('icon');
 
-		foreach ($this->$manifest_sizes as $manifest_size) {
+		foreach (self::$manifest_sizes as $manifest_size) {
 			$this->remove_uploaded_file($manifest_size . $image_path);
 		}
 
@@ -168,7 +168,7 @@ class Uploads
 
 			if (is_writable(PWACOMMERCE_FILES_UPLOADS_DIR)){
 
-				$template_path = PWACOMMERCE_PLUGIN_PATH . $this->htaccess_template;
+				$template_path = PWACOMMERCE_PLUGIN_PATH . self::$htaccess_template;
 
 				if (file_exists($template_path)){
 

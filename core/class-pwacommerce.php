@@ -3,7 +3,7 @@
 namespace PWAcommerce\Core;
 
 use \PWAcommerce\Includes\Options;
-use \PWAcommerce\Includes\PWAcommerce_Uploads;
+use \PWAcommerce\Includes\Uploads;
 
 /**
  * Main class for the PWAcommerce plugin. This class handles:
@@ -16,8 +16,8 @@ class PWAcommerce {
 	{
 		// create uploads folder and define constants
 		if ( !defined( 'PWACOMMERCE_FILES_UPLOADS_DIR' ) && !defined( 'PWACOMMERCE_FILES_UPLOADS_URL' ) ){
-			$PWAcommerce_Uploads = new PWAcommerce_Uploads();
-			$PWAcommerce_Uploads->define_uploads_dir();
+			$uploads = new Uploads();
+			$uploads->define_uploads_dir();
 		}
 	}
 
@@ -33,8 +33,8 @@ class PWAcommerce {
 		// it does not change the old settings.
 		$pwacommerce_options->save_settings( $pwacommerce_options->options );
 
-		$PWAcommerce_Uploads = new PWAcommerce_Uploads();
-		$PWAcommerce_Uploads->create_uploads_dir();
+		$uploads = new Uploads();
+		$uploads->create_uploads_dir();
 
 	}
 
