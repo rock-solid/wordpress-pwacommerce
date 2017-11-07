@@ -31,7 +31,8 @@ if ( is_admin() ) {
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
 		$pwacommerce_ajax = new Admin\Admin_Ajax();
-
+		add_action( 'wp_ajax_pwacommerce_settings', [ &$pwacommerce_ajax, 'settings' ] );
+		add_action( 'wp_ajax_pwacommerce_subscribe' , [ &$pwacommerce_ajax, 'subscribe' ] );
 
 	} else {
 
@@ -40,6 +41,6 @@ if ( is_admin() ) {
 
 } else {
 
-	add_action( 'plugins_loaded', 'PWAcommerce\pwacommerce_frontend_init' );
+	// add_action( 'plugins_loaded', 'PWAcommerce\pwacommerce_frontend_init' );
 }
 
