@@ -10,4 +10,5 @@ return array(
     'PWAcommerce\\Admin\\Admin_Init' => $baseDir . '/admin/admin-init.php',
     'PWAcommerce\\Core\\PWAcommerce' => $baseDir . '/core/class-pwacommerce.php',
     'PWAcommerce\\Includes\\Options' => $baseDir . '/includes/class-options.php',
+    'PWAcommerce\\Includes\\Uploads' => $baseDir . '/includes/class-uploads.php',
 );
