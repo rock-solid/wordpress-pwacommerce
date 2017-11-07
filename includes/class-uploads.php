@@ -10,7 +10,7 @@ use \PWAcommerce\Includes\Options;
  * Instantiates all the uploads and offers a number of utility methods to work with the options
  *
  */
-class PWAcommerce_Uploads
+class Uploads
 {
 
 
