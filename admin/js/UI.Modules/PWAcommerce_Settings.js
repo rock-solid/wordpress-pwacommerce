@@ -78,12 +78,12 @@ function PWACOMMERCE_SETTINGS() {
       // set the value on the dummy text field that will always be visible in the post data
       if (this.checked) {
         jQuery(
-          '#' + JSObject.type + 'service_worker_installed',
+          '#' + JSObject.type + '_service_worker_installed',
           JSObject.DOMDoc
         ).val('1');
       } else {
         jQuery(
-          '#' + JSObject.type + 'service_worker_installed',
+          '#' + JSObject.type + '_service_worker_installed',
           JSObject.DOMDoc
         ).val('0');
       }
