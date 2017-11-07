@@ -44,7 +44,7 @@ class Admin_Init {
 	 * Adds a settings link to the plugin in the plugin list.
 	 */
 	public function add_settings_link( $links ) {
-		$settings_link = '<a href="' . get_admin_url() . 'admin.php?page=PWAcommerce">' . __( 'Settings' ) . '</a>';
+		$settings_link = '<a href="' . get_admin_url() . 'admin.php?page=pwacommerce">' . __( 'Settings' ) . '</a>';
 
 		array_push( $links, $settings_link );
 
@@ -57,9 +57,17 @@ class Admin_Init {
 	public function enqueue_scripts() {
 
 		$pwacommerce_options = new Options();
+
 		wp_enqueue_style( $pwacommerce_options->prefix . 'css_general', plugins_url( PWACOMMERCE_DOMAIN . '/admin/css/general.css' ), [], PWACOMMERCE_VERSION );
 
+		$dependencies = [ 'jquery-core', 'jquery-migrate' ];
 
+		wp_enqueue_script( $pwacommerce_options->prefix . 'js_validate', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Interface/Lib/jquery.validate.min.js' ), $dependencies, '1.11.1' );
+		wp_enqueue_script( $pwacommerce_options->prefix . 'js_validate_additional', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Interface/Lib/validate-additional-methods.min.js' ), $dependencies, '1.11.1' );
+		wp_enqueue_script( $pwacommerce_options->prefix . 'js_loader', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Interface/Loader.min.js' ), $dependencies, PWACOMMERCE_VERSION );
+		wp_enqueue_script( $pwacommerce_options->prefix . 'js_ajax_upload', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Interface/AjaxUpload.min.js' ), $dependencies, PWACOMMERCE_VERSION );
+		wp_enqueue_script( $pwacommerce_options->prefix . 'js_interface', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Interface/JSInterface.min.js' ), $dependencies, PWACOMMERCE_VERSION );
+		wp_enqueue_script( $pwacommerce_options->prefix . 'js_settings', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Modules/PWAcommerce_Settings.min.js' ), [], PWACOMMERCE_VERSION );
 	}
 
 }
