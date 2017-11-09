@@ -69,7 +69,7 @@ class Admin_Init {
 		wp_enqueue_script( $pwacommerce_options->prefix . 'js_interface', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Interface/JSInterface.min.js' ), $dependencies, PWACOMMERCE_VERSION );
 		wp_enqueue_script( $pwacommerce_options->prefix . 'js_settings', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Modules/PWAcommerce_Settings.min.js' ), [], PWACOMMERCE_VERSION );
 		wp_enqueue_script( $pwacommerce_options->prefix . 'js_subscribe', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Modules/PWAcommerce_Subscribe.min.js' ), [], PWACOMMERCE_VERSION );
-
+		wp_enqueue_script( $pwacommerce_options->prefix . 'js_editimages', plugins_url( PWACOMMERCE_DOMAIN . '/admin/js/UI.Modules/PWAcommerce_EditImages.min.js' ), [], PWACOMMERCE_VERSION );
 	}
 
 }
