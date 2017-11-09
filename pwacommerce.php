@@ -32,7 +32,9 @@ if ( is_admin() ) {
 
 		$pwacommerce_ajax = new Admin\Admin_Ajax();
 		add_action( 'wp_ajax_pwacommerce_settings', [ &$pwacommerce_ajax, 'settings' ] );
-		add_action( 'wp_ajax_pwacommerce_subscribe' , [ &$pwacommerce_ajax, 'subscribe' ] );
+		add_action( 'wp_ajax_pwacommerce_subscribe', [ &$pwacommerce_ajax, 'subscribe' ] );
+		add_action( 'wp_ajax_pwacommerce_editimages', [ &$pwacommerce_ajax, 'editimages' ] );
+
 
 	} else {
 
