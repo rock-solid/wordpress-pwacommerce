@@ -9,8 +9,8 @@ function PWACOMMERCE_SETTINGS() {
   this.send_btn;
 
   /**
-     * Init function called from PWACJSInterface
-     */
+   * Init function called from PWACJSInterface
+   */
   this.init = function() {
     // save a reference to PWACJSInterface Object
     PWACJSInterface = window.parent.PWACJSInterface;
@@ -32,8 +32,8 @@ function PWACOMMERCE_SETTINGS() {
   };
 
   /**
-     * Validate form data
-     */
+   * Validate form data
+   */
   this.initValidation = function() {
     jQuery.validator.addMethod(
       'regex',
