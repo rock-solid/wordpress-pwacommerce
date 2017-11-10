@@ -24,42 +24,75 @@ class PWAcommerce_API
 	}
 
 	public function register_woocommerce_routes() {
-		register_rest_route( 'pwacommerce', '/categories', array(
-			'methods' => 'GET',
-			'callback' => array( $this, 'view_categories' )
-		));
+		$pwacommerce_options = new Options();
 
-		register_rest_route( 'pwacommerce', '/product/(?P<id>\d+)', array(
-			'methods' => 'GET',
-			'callback' => array( $this, 'view_product' )
-		));
+		if ( $pwacommerce_options->get_setting('consumer_key') !== '' &&
+		$pwacommerce_options->get_setting('consumer_secret') !== '' ) {
 
-		register_rest_route( 'pwacommerce', '/reviews/(?P<id>\d+)', array(
-			'methods' => 'GET',
-			'callback' => array( $this, 'view_reviews' )
-		));
+			register_rest_route( 'pwacommerce', '/export-config', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'export_config' ],
+			]);
 
-		register_rest_route( 'pwacommerce', '/products', array(
-			'methods' => 'GET',
-			'callback' => array( $this, 'view_products' ),
-			'args' => array(
-				'categId' => array(
-					'required' => false,
-					'type' => 'integer',
-				),
-			),
-		));
+			register_rest_route( 'pwacommerce', '/categories', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'view_categories' ]
+			]);
 
-		register_rest_route( 'pwacommerce', '/product-variations/(?P<id>\d+)', array(
-			'methods' => 'GET',
-			'callback' => array( $this, 'view_product_variations' ),
-		));
+			register_rest_route( 'pwacommerce', '/product/(?P<id>\d+)', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'view_product' ]
+			]);
 
-		register_rest_route('pwacommerce', '/proceed-checkout', array(
-			'methods' => 'POST',
-			'callback' => array( $this, 'checkout_redirect' ),
-		));
+			register_rest_route( 'pwacommerce', '/reviews/(?P<id>\d+)', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'view_reviews' ]
+			]);
 
+			register_rest_route( 'pwacommerce', '/products', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'view_products' ],
+				'args' => [
+					'categId' => [
+						'required' => false,
+						'type' => 'integer',
+					],
+				],
+			]);
+
+			register_rest_route( 'pwacommerce', '/product-variations/(?P<id>\d+)', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'view_product_variations' ],
+			]);
+
+			register_rest_route( 'pwacommerce', '/proceed-checkout', [
+				'methods' => 'POST',
+				'callback' => [ $this, 'checkout_redirect' ],
+			]);
+		}
+	}
+
+	public function export_config( \WP_REST_Request $request ) {
+		$api_url = get_site_url( null, '/wp-json/pwacommerce/' );
+
+		$woocommerce = $this->get_client();
+
+		$currency_settings = $woocommerce->get( 'settings/general/woocommerce_currency');
+		$currency = $currency_settings['value'];
+
+		$config = [
+			'ENDPOINTS' => [
+				'API_CATEGORIES_URL' => $api_url . 'categories/',
+				'API_PRODUCTS_URL' => $api_url . 'products/',
+				'API_PRODUCT_URL' => $api_url . 'product/',
+				'API_REVIEWS_URL' => $api_url . 'reviews/',
+				'API_VARIATIONS_URL' => $api_url . 'product-variations/',
+				'API_CHECKOUT_URL' => $api_url . 'proceed-checkout/',
+			],
+			'CURRENCY' => $currency,
+		];
+
+		return wp_json_encode($config);
 	}
 
 	public function checkout_redirect ( \WP_REST_Request $request ) {
