@@ -42,6 +42,7 @@ if ( is_admin() ) {
 		add_action( 'wp_ajax_pwacommerce_settings', [ &$pwacommerce_ajax, 'settings' ] );
 		add_action( 'wp_ajax_pwacommerce_subscribe', [ &$pwacommerce_ajax, 'subscribe' ] );
 		add_action( 'wp_ajax_pwacommerce_editimages', [ &$pwacommerce_ajax, 'editimages' ] );
+		add_action( 'wp_ajax_pwacommerce_wookeys', [ &$pwacommerce_ajax, 'wookeys' ] );
 
 
 	} else {

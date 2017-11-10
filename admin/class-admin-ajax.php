@@ -69,6 +69,61 @@ class Admin_Ajax {
 		exit();
 	}
 
+	public function wookeys() {
+		if ( current_user_can( 'manage_options' ) ) {
+
+			$response = [
+				'status' => 0,
+				'message' => 'There was an error. Please reload the page and try again.',
+			];
+
+			$changed = 0;
+
+			if ( ! empty( $_POST ) ) {
+
+				$pwacommerce_options = new Options();
+
+				if ( isset( $_POST['pwacommerce_wookeys_consumerkey'] ) &&
+				isset( $_POST['pwacommerce_wookeys_consumersecret'] ) ) {
+
+					// save consumer key
+					$new_consumer_key = sanitize_text_field( $_POST['pwacommerce_wookeys_consumerkey'] );
+					if ( $new_consumer_key !== $pwacommerce_options->get_setting( 'consumer_key' ) ) {
+
+						$changed = 1;
+
+						$pwacommerce_options->update_settings( 'consumer_key', $new_consumer_key );
+					}
+
+					// save consumer secret
+					$new_consumer_secret = sanitize_text_field( $_POST['pwacommerce_wookeys_consumersecret']);
+
+					if ( $new_consumer_secret !== $pwacommerce_options->get_setting( 'consumer_secret' ) ) {
+
+						$changed = 1;
+						$pwacommerce_options->update_settings( 'consumer_secret', $new_consumer_secret );
+					}
+
+
+					if ( $changed ) {
+
+						$response['status'] = 1;
+						$response['message'] = 'Your settings have been successfully modified!';
+
+					} else {
+
+						$response['message'] = 'Your settings have not changed.';
+					}
+				}
+
+			} // End if().
+
+			echo wp_json_encode( $response );
+		} // End if().
+
+		exit();
+	}
+
 	/**
 	 * Mark the user as being subscribed to the mailing list.
 	 */
