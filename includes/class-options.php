@@ -15,8 +15,8 @@ class Options {
 		'analytics_id' => '',
 		'joined_subscriber_list' => 0,
 		'service_worker_installed' => 0,
-		'consumer_key ' => '',
-		'consumer_secret ' => '',
+		'consumer_key' => '',
+		'consumer_secret' => '',
 	];
 
 
