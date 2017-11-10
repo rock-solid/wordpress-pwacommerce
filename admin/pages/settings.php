@@ -3,6 +3,8 @@ $pwacommerce_options = new \PWAcommerce\Includes\Options();
 
 $analytics_id = $pwacommerce_options->get_setting( 'analytics_id' );
 $service_worker_installed = $pwacommerce_options->get_setting( 'service_worker_installed' );
+$consumer_key = $pwacommerce_options->get_setting( 'consumer_key' );
+$consumer_secret = $pwacommerce_options->get_setting( 'consumer_secret' );
 
 $icon_path = $pwacommerce_options->get_setting( 'icon' );
 
@@ -51,6 +53,38 @@ if ( $icon_path != "" ) {
 				<label for ="pwacommerce_settings_service_worker_installed_check">Service Worker Installed</label>
 				<div class="spacer-30"></div>
 				<a href="javascript:void(0)" id="pwacommerce_settings_send_btn" class="button button-primary button-large">Save</a>
+			</form>
+			<div class="spacer-10"></div>
+			<h2>Woocommerce Keys</h2>
+			<hr class="separator" />
+			<form name="pwacommerce_wookeys_form" id="pwacommerce_wookeys_form" action="<?php echo admin_url( 'admin-ajax.php' ); ?>?action=pwacommerce_wookeys" method="post">
+				<p class="field-message error" id="error_consumerkey_container"></p>
+				<div class="spacer-10"></div>
+				<label class="textinput">Consumer Key:</label>
+				<input
+					type="password"
+					autocomplete="off"
+					name="pwacommerce_wookeys_consumerkey"
+					id="pwacommerce_wookeys_consumerkey"
+					value="<?php echo esc_attr($consumer_key); ?>"
+					placeholder="ck_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+				>
+				</input> <br/>
+				<p class="field-message error" id="error_consumersecret_container"></p>
+				<div class="spacer-10"></div>
+				<label class="textinput">Consumer Secret:</label>
+				<input
+					type="password"
+					autocomplete="off"
+					name="pwacommerce_wookeys_consumersecret"
+					id="pwacommerce_wookeys_consumersecret"
+					value="<?php echo esc_attr($consumer_secret); ?>"
+					placeholder="cs_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+				>
+				</input> <br/>
+				<p class="field-message error" id="error_consumersecret_container"></p>
+				<div class="spacer-10"></div>
+				<a href="javascript:void(0)" id="pwacommerce_wookeys_send_btn" class="button button-primary button-large">Save</a>
 			</form>
 			<h2>App Icon</h2>
 			<hr class="separator" />
@@ -106,6 +140,7 @@ if ( $icon_path != "" ) {
 
 			window.PWACJSInterface.add("UI_settings","PWACOMMERCE_SETTINGS",{'DOMDoc':window.document}, window);
 			window.PWACJSInterface.add("UI_editimages","PWACOMMERCE_EDIT_IMAGES",{'DOMDoc':window.document}, window);
+			window.PWACJSInterface.add("UI_wookeys","PWACOMMERCE_WOOKEYS",{'DOMDoc':window.document}, window);
 		});
 	}
 </script>
