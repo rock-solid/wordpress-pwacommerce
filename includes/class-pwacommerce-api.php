@@ -92,7 +92,8 @@ class PWAcommerce_API
 			'CURRENCY' => $currency,
 		];
 
-		return wp_json_encode($config);
+		echo wp_json_encode($config);
+		exit();
 	}
 
 	public function checkout_redirect ( \WP_REST_Request $request ) {
