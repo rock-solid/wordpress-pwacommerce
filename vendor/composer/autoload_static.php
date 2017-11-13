@@ -20,10 +20,24 @@ class ComposerStaticInit3da414801e6930212dbed7fe6dec735d
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'D' => 
+        array (
+            'Detection' => 
+            array (
+                0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced',
+            ),
+        ),
+    );
+
     public static $classMap = array (
+        'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
         'PWAcommerce\\Admin\\Admin_Ajax' => __DIR__ . '/../..' . '/admin/class-admin-ajax.php',
         'PWAcommerce\\Admin\\Admin_Init' => __DIR__ . '/../..' . '/admin/admin-init.php',
         'PWAcommerce\\Core\\PWAcommerce' => __DIR__ . '/../..' . '/core/class-pwacommerce.php',
+        'PWAcommerce\\Frontend\\Detect' => __DIR__ . '/../..' . '/frontend/class-detect.php',
+        'PWAcommerce\\Frontend\\Frontend_Init' => __DIR__ . '/../..' . '/frontend/frontend-init.php',
+        'PWAcommerce\\Includes\\Cookie' => __DIR__ . '/../..' . '/includes/class-cookie.php',
         'PWAcommerce\\Includes\\Options' => __DIR__ . '/../..' . '/includes/class-options.php',
         'PWAcommerce\\Includes\\PWAcommerce_API' => __DIR__ . '/../..' . '/includes/class-pwacommerce-api.php',
         'PWAcommerce\\Includes\\Uploads' => __DIR__ . '/../..' . '/includes/class-uploads.php',
@@ -34,6 +48,7 @@ class ComposerStaticInit3da414801e6930212dbed7fe6dec735d
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit3da414801e6930212dbed7fe6dec735d::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit3da414801e6930212dbed7fe6dec735d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3da414801e6930212dbed7fe6dec735d::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit3da414801e6930212dbed7fe6dec735d::$classMap;
 
         }, null, ClassLoader::class);
