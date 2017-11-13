@@ -52,6 +52,6 @@ if ( is_admin() ) {
 
 } else {
 
-	// add_action( 'plugins_loaded', 'PWAcommerce\pwacommerce_frontend_init' );
+	add_action( 'plugins_loaded', 'PWAcommerce\pwacommerce_frontend_init' );
 }
 
