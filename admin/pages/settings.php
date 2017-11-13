@@ -33,7 +33,15 @@ if ( $icon_path != "" ) {
 	<div class="wrap">
 		<div class="left-side">
 			<div class="title_section">
-				<h1 class="wp-heading-inline">PWAcommerce</h1>
+				<h1 class="wp-heading-inline">PWACommerce</h1>
+				<p>Mobile plugin that helps you transform your WooCommerce shop into a Progressive Web Application.</p>
+			</div>
+			<hr class="separator" />
+			<div class="theme-switcher">
+				<div class="theme active">
+					<img class="default-screenshot" src="<?php echo plugins_url() . '/' . PWACOMMERCE_DOMAIN . "/admin/images/default-theme.png"; ?>" />
+					<h2 class="theme-name">Default</h2>
+				</div>
 			</div>
 			<hr class="separator" />
 			<form name="pwacommerce_settings_form" id="pwacommerce_settings_form" action="<?php echo admin_url( 'admin-ajax.php' ); ?>?action=pwacommerce_settings" method="post">
@@ -86,10 +94,9 @@ if ( $icon_path != "" ) {
 				<div class="spacer-10"></div>
 				<a href="javascript:void(0)" id="pwacommerce_wookeys_send_btn" class="button button-primary button-large">Save</a>
 			</form>
-			<h2>App Icon</h2>
+			<h2>Add To Homescreen Icon</h2>
 			<hr class="separator" />
 			<p>Add an icon so that customers will be prompted to add your app to their homescreen.</p>
-			<div class="spacer-20"></div>
 			<form name="pwacommerce_editimages_form" id="pwacommerce_editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=pwacommerce_editimages&type=upload" method="post" enctype="multipart/form-data">
 
 				<!-- upload icon field -->
@@ -126,6 +133,25 @@ if ( $icon_path != "" ) {
 				<div class="spacer-20"></div>
 				<a href="javascript:void(0);" id="pwacommerce_editimages_send_btn" class="button button-primary button-large">Save</a>
 			</form>
+
+			<div class="spacer-10"></div>
+			<div class="title_section">
+				<h1 class="wp-heading-inline">PWACommerce PRO</h1>
+			</div>
+			<hr class="separator" />
+			<div align="center">
+			<h2>Pre-Order WooCommerce Progressive Web App PRO Now & Save Big!</h2>
+			<p>&#9989; 3 Domain Licenses &#9989; Unlimited Web Push Notifications &#9989; 12 Months Priority Support & Product Updates</p>
+			<table> <tbody> <tr> <td><a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/"><img class="aligncenter" src="http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/rLAB49Z.gif" alt="demo"></a></td> <td><a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/"><img class="aligncenter" src="http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/GdyeKjo.gif" alt="demo"></a></td> <td><a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/"><img class="aligncenter" src="http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/3AUek71.gif" alt="demo"></a></td> </tr> </tbody> </table>
+
+			<ul>
+				<li><strong>&#9758; WEB PUSH NOTIFICATIONS &#9756;</strong> <br/> <p>Remind or re-engage your mobile users even after they leave your app. Web push notifications can help you increase engagement by 4X and those users spend twice as much time on the app.</p></li>
+				<li><strong>&#9758; IMPROVED CONVERSIONS &#9756;</strong> <br/> <p>Alibaba.com is the world’s largest online business-to-business (B2B) trading platform, serving 200+ countries and regions. After upgrading their site to a Progressive Web App (PWA), they saw a 76 percent increase in total conversions across browsers.</p></li>
+				<li><strong>&#9758; OFF-LINE MODE &#9756;</strong> <br/> <p>53% of users will abandon a site if it takes longer than 3 seconds to load! The mobile app theme responds quickly to user interactions with silky smooth animations and no janky scrolling</p></li>
+			</ul>
+
+			<a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/" id="pwacommerce_settings_send_btn" class="button button-primary button-large">Pre-Order PRO Now</a>
+			</div>
 		</div>
 		<div class="right-side">
 			<?php include_once( PWACOMMERCE_PLUGIN_PATH . 'admin/sections/subscribe.php' ); ?>
