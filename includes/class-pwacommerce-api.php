@@ -5,10 +5,15 @@ use Automattic\WooCommerce\Client;
 use \PWAcommerce\Includes\Options;
 use \PWAcommerce\Includes\Uploads;
 
-
-
+/**
+ *  Class that sets up the apps api
+ */
 class PWAcommerce_API
 {
+
+	/**
+	 * Returns the woocommerce api client with configurations in place
+	 */
 	protected function get_client() {
 
 		$pwacommerce_options = new Options();
@@ -24,30 +29,24 @@ class PWAcommerce_API
 		);
 	}
 
-	public function register_woocommerce_routes() {
+	/**
+	 * Registers all the plugins rest routes
+	 */
+	public function register_pwacommerce_routes() {
 		$pwacommerce_options = new Options();
 
+		// Checks that the api keys were added to the database
 		if ( $pwacommerce_options->get_setting('consumer_key') !== '' &&
 		$pwacommerce_options->get_setting('consumer_secret') !== '' ) {
 
-			register_rest_route( 'pwacommerce', '/export-config', [
+			register_rest_route( 'pwacommerce', '/export-manifest', [
 				'methods' => 'GET',
-				'callback' => [ $this, 'export_config' ],
+				'callback' => [ $this, 'export_manifest' ],
 			]);
 
 			register_rest_route( 'pwacommerce', '/categories', [
 				'methods' => 'GET',
 				'callback' => [ $this, 'view_categories' ]
-			]);
-
-			register_rest_route( 'pwacommerce', '/product/(?P<id>\d+)', [
-				'methods' => 'GET',
-				'callback' => [ $this, 'view_product' ]
-			]);
-
-			register_rest_route( 'pwacommerce', '/reviews/(?P<id>\d+)', [
-				'methods' => 'GET',
-				'callback' => [ $this, 'view_reviews' ]
 			]);
 
 			register_rest_route( 'pwacommerce', '/products', [
@@ -61,6 +60,16 @@ class PWAcommerce_API
 				],
 			]);
 
+			register_rest_route( 'pwacommerce', '/product/(?P<id>\d+)', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'view_product' ]
+			]);
+
+			register_rest_route( 'pwacommerce', '/reviews/(?P<id>\d+)', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'view_reviews' ]
+			]);
+
 			register_rest_route( 'pwacommerce', '/product-variations/(?P<id>\d+)', [
 				'methods' => 'GET',
 				'callback' => [ $this, 'view_product_variations' ],
@@ -71,13 +80,12 @@ class PWAcommerce_API
 				'callback' => [ $this, 'checkout_redirect' ],
 			]);
 
-			register_rest_route( 'pwacommerce', '/export-manifest', [
-				'methods' => 'GET',
-				'callback' => [ $this, 'export_manifest' ],
-			]);
 		}
 	}
 
+	/**
+	 * Exports the app manifest
+	 */
 	public function export_manifest() {
 
 		$site_name = get_bloginfo('name');
@@ -120,30 +128,9 @@ class PWAcommerce_API
 		exit();
 	}
 
-	public function export_config( \WP_REST_Request $request ) {
-		$api_url = get_site_url( null, '/wp-json/pwacommerce/' );
-
-		$woocommerce = $this->get_client();
-
-		$currency_settings = $woocommerce->get( 'settings/general/woocommerce_currency');
-		$currency = $currency_settings['value'];
-
-		$config = [
-			'ENDPOINTS' => [
-				'API_CATEGORIES_URL' => $api_url . 'categories/',
-				'API_PRODUCTS_URL' => $api_url . 'products/',
-				'API_PRODUCT_URL' => $api_url . 'product/',
-				'API_REVIEWS_URL' => $api_url . 'reviews/',
-				'API_VARIATIONS_URL' => $api_url . 'product-variations/',
-				'API_CHECKOUT_URL' => $api_url . 'proceed-checkout/',
-			],
-			'CURRENCY' => $currency,
-		];
-
-		echo wp_json_encode($config);
-		exit();
-	}
-
+	/**
+	 * Adds the items that came with the request to the cart and redirects to the desktop checkout page
+	 */
 	public function checkout_redirect ( \WP_REST_Request $request ) {
 
 
@@ -171,24 +158,38 @@ class PWAcommerce_API
 
 	}
 
+	/**
+	 * Returns a json with the categories info
+	 */
 	public function view_categories( \WP_REST_Request $request ) {
 		$woocommerce = $this->get_client();
 		return $woocommerce->get( 'products/categories' );
 
 	}
 
+	/**
+	 * Returns a json with the reviews of a product based on the product id
+	 */
 	public function view_reviews( \WP_REST_Request $request ) {
 		$woocommerce = $this->get_client();
 		$id = $request->get_param('id');
 		return $woocommerce->get( "products/$id/reviews" );
 	}
 
+	/**
+	 * Returns a json with a products info based on its id
+	 */
 	public function view_product( \WP_REST_Request $request ){
 		$woocommerce = $this->get_client();
 		$id = $request->get_param('id');
 		return $woocommerce->get( "products/$id" );
 	}
 
+	/**
+	 * Returns a json with the info of all the products in a category if the request has a categId param
+	 * if the categoryId param is missing it returns a json with the info of all featured products, if there are none
+	 * it returns the info for the last 10 products added to the site
+	 */
 	public function view_products( \WP_REST_Request $request ) {
 		$woocommerce = $this->get_client();
 
@@ -206,6 +207,9 @@ class PWAcommerce_API
 
 	}
 
+	/**
+	 * Returns a json with the variatiosn of a product and their info based on the product's id
+	 */
 	public function view_product_variations( \WP_REST_Request $request ) {
 		$woocommerce = $this->get_client();
 		$id = $request->get_param('id');

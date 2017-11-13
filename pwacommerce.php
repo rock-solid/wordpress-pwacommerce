@@ -30,7 +30,7 @@ $pwacommerce  = new Core\PWAcommerce();
 global $pwacommerce_api;
 $pwacommerce_api = new Includes\PWAcommerce_API();
 
-add_action('rest_api_init', array(&$pwacommerce_api, 'register_woocommerce_routes'));
+add_action('rest_api_init', array(&$pwacommerce_api, 'register_pwacommerce_routes'));
 
 register_activation_hook( __FILE__, [ &$pwacommerce, 'activate' ] );
 
