@@ -3,6 +3,7 @@ namespace PWAcommerce\Includes;
 
 use Automattic\WooCommerce\Client;
 use \PWAcommerce\Includes\Options;
+use \PWAcommerce\Includes\Uploads;
 
 
 
@@ -69,7 +70,54 @@ class PWAcommerce_API
 				'methods' => 'POST',
 				'callback' => [ $this, 'checkout_redirect' ],
 			]);
+
+			register_rest_route( 'pwacommerce', '/export-manifest', [
+				'methods' => 'GET',
+				'callback' => [ $this, 'export_manifest' ],
+			]);
 		}
+	}
+
+	public function export_manifest() {
+
+		$site_name = get_bloginfo('name');
+
+		$arr_manifest = [
+			'name' => $site_name,
+			'short_name' => $site_name,
+			'start_url' => home_url(),
+			'display' => 'standalone',
+			'orientation' => 'any',
+			'theme_color' => '#a333c8',
+			'background_color' => '#a333c8',
+		];
+
+		$options = new Options();
+		$icon = $options->get_setting('icon');
+
+		if ( $icon != '' ) {
+
+			$base_path = $icon;
+			$arr_manifest['icons'] = [];
+			$uploads = new Uploads();
+
+			foreach ( Uploads::$manifest_sizes as $manifest_size  ) {
+
+				$icon_path = $uploads->get_file_url( $manifest_size . $base_path );
+
+				if ( $icon_path != '' ) {
+
+					$arr_manifest['icons'][] = [
+						"src" => $icon_path,
+						"sizes" => $manifest_size . 'x' . $manifest_size,
+						"type" => "image/png"
+					];
+				}
+			}
+		}
+
+		echo wp_json_encode( $arr_manifest );
+		exit();
 	}
 
 	public function export_config( \WP_REST_Request $request ) {
