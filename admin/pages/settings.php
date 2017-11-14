@@ -38,9 +38,9 @@ if ( $icon_path != "" ) {
 			</div>
 			<hr class="separator" />
 			<div class="theme-switcher">
-				<div class="theme active">
-					<img class="default-screenshot" src="<?php echo plugins_url() . '/' . PWACOMMERCE_DOMAIN . "/admin/images/default-theme.png"; ?>" />
-					<h2 class="theme-name">Default</h2>
+				<div class="active">
+					<img  src="<?php echo plugins_url() . '/' . PWACOMMERCE_DOMAIN . "/admin/images/default-theme.png"; ?>" />
+					<h2 class="theme-name">Default Theme</h2>
 				</div>
 			</div>
 			<hr class="separator" />

@@ -121,4 +121,27 @@
       background-color: #939494;
     }
   }
+
+  .theme-switcher {
+    .theme-name {
+      font-size: 15px;
+      font-weight: 600;
+      height: 18px;
+      padding: 15px 110px 15px 15px;
+      overflow: hidden;
+      background: #fff;
+      margin: 0;
+    }
+
+    .active {
+      display: inline-block;
+
+      .theme-name {
+        background: #23282d;
+        color: #fff;
+        font-weight: 300;
+        text-align: end;
+      }
+    }
+  }
 }
