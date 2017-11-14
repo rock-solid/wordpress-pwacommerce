@@ -11,6 +11,7 @@ namespace PWAcommerce;
 
 require_once 'vendor/autoload.php';
 require_once 'core/config.php';
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 global $pwacommerce_options;
 $pwacommerce_options = new Core\PWAcommerce();
@@ -52,6 +53,9 @@ if ( is_admin() ) {
 
 } else {
 
-	add_action( 'plugins_loaded', 'PWAcommerce\pwacommerce_frontend_init' );
+	if ( is_plugin_active ( 'woocommerce/woocommerce.php' ) ) {
+
+		add_action( 'plugins_loaded', 'PWAcommerce\pwacommerce_frontend_init' );
+	}
 }
 
