@@ -20,6 +20,8 @@ class Admin_Init {
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 
+		add_action( 'admin_notices', [ $this, 'pwacommerce_notices' ] );
+
 		add_filter( 'plugin_action_links_' . plugin_basename( PWACOMMERCE_PLUGIN_PATH . '/pwacommerce.php' ), [ $this, 'add_settings_link' ] );
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
@@ -46,9 +48,28 @@ class Admin_Init {
 	public function add_settings_link( $links ) {
 		$settings_link = '<a href="' . get_admin_url() . 'admin.php?page=pwacommerce">' . __( 'Settings' ) . '</a>';
 
+		if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+			$settings_link = '<a href="' . get_admin_url() . 'plugin-install.php?s=woocommerce&tab=search&type=term"><span style="color:#b30000">' . __( 'Action Required: Get WooCommerce' ) . '</span></a>';
+		}
+
 		array_push( $links, $settings_link );
 
 		return $links;
+	}
+
+	/**
+	 * Checks if woocommerce plugin is installed and displays notice if not
+	 */
+	public function pwacommerce_notices(){
+		if ( ! is_plugin_active ( 'woocommerce/woocommerce.php' ) ) {
+			echo '<div class="notice notice-warning is-dismissible">
+						<p><b>PWAcommerce</b> requires that you have the WooCommerce plugin from Automattic active.</p>
+						<p>
+							Please make sure you have the plugin installed and activated. <a href="' . get_admin_url() . 'plugin-install.php?s=woocommerce&tab=search&type=term">Download the WooCommerce plugin</a>
+						</p>
+				  </div>';
+			return;
+		}
 	}
 
 	/**
