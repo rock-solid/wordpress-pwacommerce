@@ -50,7 +50,7 @@ class Frontend_Init {
 			$load_app = true;
 		}
 
-		if ( strpos( $_SERVER['REQUEST_URI'], '/checkout/' ) ) {
+		if ( strpos( $_SERVER['REQUEST_URI'], 'checkout' ) ) {
 			$load_app = false;
 		}
 
