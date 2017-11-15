@@ -19,7 +19,6 @@ $config = [
 	'API_VARIATIONS_URL' => $api_url . 'product-variations/',
 	'API_CHECKOUT_URL' => $api_url . 'proceed-checkout/',
 	'CURRENCY' => get_woocommerce_currency_symbol(),
-	'SERVICE_WORKER_INSTALLED' => $app_settings['service_worker_installed'],
 ];
 
 $config_json = wp_json_encode($config);
@@ -55,6 +54,14 @@ $config_json = wp_json_encode($config);
     <div id="root" style="height:100%"></div>
     <script type="text/javascript" src="<?php echo $theme_path;?>js/app.js"></script>
 </body>
+
+<?php if ($app_settings['service_worker_installed'] === '1'): ?>
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/sw.js');
+		}
+	</script>
+<?php endif; ?>
 
 <?php
 	// check if google analytics id was set
