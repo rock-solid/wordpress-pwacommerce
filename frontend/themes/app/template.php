@@ -7,6 +7,8 @@ $frontend = new Frontend_Init();
 
 $app_settings = $frontend->load_app_settings();
 
+$site_name =  get_bloginfo( 'name' );
+
 $api_url = get_site_url( null, '/wp-json/pwacommerce/' );
 
 $theme_path = plugins_url() . '/' . PWACOMMERCE_DOMAIN . '/frontend/themes/app/';
@@ -19,7 +21,7 @@ $config = [
 	'API_VARIATIONS_URL' => $api_url . 'product-variations/',
 	'API_CHECKOUT_URL' => $api_url . 'proceed-checkout/',
 	'CURRENCY' => get_woocommerce_currency_symbol(),
-	'SHOP_NAME' => get_bloginfo( 'name' ),
+	'SHOP_NAME' => $site_name,
 ];
 
 $config_json = wp_json_encode($config);
@@ -40,7 +42,7 @@ $config_json = wp_json_encode($config);
     <meta name="theme-color" content="#a333c8">
     <link rel="manifest" href="<?php echo  $api_url . 'export-manifest/' ?>">
     <link rel="shortcut icon" href="/favicon.ico">
-    <title>pwa-theme-woocommerce</title>
+    <title><?php echo esc_html($site_name); ?></title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css">
     <script type="text/javascript" pagespeed_no_defer="">
         window.appticles = {
