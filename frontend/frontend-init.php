@@ -127,7 +127,7 @@ class Frontend_Init {
 
 		} else {
 
-			$settings['icon'] = PWACOMMERCE_FILES_UPLOADS_DIR.$file_path;
+			$settings['icon'] = PWACOMMERCE_FILES_UPLOADS_URL.$file_path;
 		}
 
 		return $settings;
