@@ -41,6 +41,9 @@ $config_json = wp_json_encode($config);
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#a333c8">
     <link rel="manifest" href="<?php echo  $api_url . 'export-manifest/' ?>">
+	<?php if ($app_settings['icon'] != ''): ?>
+		<link rel="apple-touch-icon" href="<?php echo $app_settings['icon'];?>" />
+    <?php endif;?>
     <link rel="shortcut icon" href="/favicon.ico">
     <title><?php echo esc_html($site_name); ?></title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css">
