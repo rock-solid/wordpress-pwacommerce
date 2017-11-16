@@ -70,11 +70,10 @@ if ( $icon_path != "" ) {
 				<div class="spacer-10"></div>
 				<label class="textinput">Consumer Key:</label>
 				<input
-					type="password"
-					autocomplete="off"
+					type="text"
 					name="pwacommerce_wookeys_consumerkey"
 					id="pwacommerce_wookeys_consumerkey"
-					value="<?php echo esc_attr($consumer_key); ?>"
+					value="<?php echo $consumer_key == '' ? esc_attr($consumer_key) : "*******************************************" ?>"
 					placeholder="ck_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 				>
 				</input> <br/>
@@ -82,11 +81,10 @@ if ( $icon_path != "" ) {
 				<div class="spacer-10"></div>
 				<label class="textinput">Consumer Secret:</label>
 				<input
-					type="password"
-					autocomplete="off"
+					type="text"
 					name="pwacommerce_wookeys_consumersecret"
 					id="pwacommerce_wookeys_consumersecret"
-					value="<?php echo esc_attr($consumer_secret); ?>"
+					value="<?php echo $consumer_secret == '' ? esc_attr($consumer_secret) : "*******************************************" ?>"
 					placeholder="cs_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 				>
 				</input> <br/>
