@@ -41,7 +41,7 @@ class Admin_Ajax {
 					}
 
 					// save service worker installed
-					$new_service_worker_installed = sanitize_text_field( $_POST['pwacommerce_settings_service_worker_installed']);
+					$new_service_worker_installed = sanitize_text_field( $_POST['pwacommerce_settings_service_worker_installed'] );
 
 					if ( $new_service_worker_installed !== $pwacommerce_options->get_setting( 'service_worker_installed' ) ) {
 
@@ -169,8 +169,8 @@ class Admin_Ajax {
 
 			$action = null;
 
-			if (!empty($_GET) && isset($_GET['type']))
-				if ($_GET['type'] == 'upload' || $_GET['type'] == 'delete')
+			if ( !empty( $_GET ) && isset( $_GET['type'] ) )
+				if ( $_GET['type'] == 'upload' || $_GET['type'] == 'delete' )
 					$action = $_GET['type'];
 
 			$arr_response = [
@@ -178,23 +178,23 @@ class Admin_Ajax {
 				'messages' => [],
 			];
 
-			if ($action == 'upload'){
+			if ( $action == 'upload' ){
 
-				if (!empty($_FILES) && sizeof($_FILES) > 0){
+				if ( !empty( $_FILES ) && sizeof( $_FILES ) > 0 ){
 
-					require_once(ABSPATH . 'wp-admin/includes/image.php');
+					require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
-					if (!function_exists( 'wp_handle_upload' ))
+					if ( !function_exists( 'wp_handle_upload' ) )
 						require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
 					$default_uploads_dir = wp_upload_dir();
 
 					// check if the upload folder is writable
-					if (!is_writable(PWACOMMERCE_FILES_UPLOADS_DIR)){
+					if ( !is_writable( PWACOMMERCE_FILES_UPLOADS_DIR ) ){
 
 						$arr_response['messages'][] = "Error uploading image, the upload folder ".PWACOMMERCE_FILES_UPLOADS_DIR." is not writable.";
 
-					} elseif (!is_writable($default_uploads_dir['path'])) {
+					} elseif ( !is_writable( $default_uploads_dir['path'] ) ) {
 
 						$arr_response['messages'][] = "Error uploading image, the upload folder ".$default_uploads_dir['path']." is not writable.";
 
@@ -202,24 +202,24 @@ class Admin_Ajax {
 
 						$has_uploaded_files = false;
 
-						foreach ($_FILES as $file => $info) {
+						foreach ( $_FILES as $file => $info ) {
 
-							if (!empty($info['name'])){
+							if ( !empty( $info['name'] ) ) {
 
 								$has_uploaded_files = true;
 
 								$file_type = null;
 
-								if ($file == 'pwacommerce_editimages_icon') {
+								if ( $file == 'pwacommerce_editimages_icon' ) {
 									$file_type = 'icon';
 								}
 
-								if ($info['error'] >= 1 || $info['size'] <= 0 && array_key_exists($file_type, Uploads::$allowed_files)) {
+								if ( $info['error'] >= 1 || $info['size'] <= 0 && array_key_exists( $file_type, Uploads::$allowed_files ) ) {
 
 									$arr_response['status'] = 0;
 									$arr_response["messages"][] = "We encountered a problem processing your image. Please choose another image!";
 
-								} elseif ($info['size'] > 1048576){
+								} elseif ( $info['size'] > 1048576 ) {
 
 									$arr_response['status'] = 0;
 									$arr_response["messages"][] = "Do not exceed the 1MB file size limit when uploading your custom image.";
@@ -227,13 +227,13 @@ class Admin_Ajax {
 								} else {
 
 									// make unique file name for the image
-									$arrFilename = explode(".", $info['name']);
-									$fileExtension = end($arrFilename);
+									$arrFilename = explode( ".", $info['name'] );
+									$fileExtension = end( $arrFilename );
 
 									$arrAllowedExtensions = Uploads::$allowed_files[$file_type]['extensions'];
 
 									// check file extension
-									if (!in_array(strtolower($fileExtension), $arrAllowedExtensions)) {
+									if ( !in_array( strtolower( $fileExtension ), $arrAllowedExtensions ) ) {
 
 										$arr_response['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your icon!";
 
@@ -245,29 +245,29 @@ class Admin_Ajax {
 										$upload_overrides = array( 'test_form' => false );
 										$movefile = wp_handle_upload( $info, $upload_overrides );
 
-										if (is_array($movefile)) {
+										if ( is_array( $movefile ) ) {
 
-											if (isset($movefile['error'])) {
+											if ( isset( $movefile['error'] ) ) {
 
 												$arr_response['messages'][] = $movefile['error'];
 
 											} else {
 
-												$copied_and_resized = $this->resize_image($movefile['file'], $uniqueFilename, $error_message);
+												$copied_and_resized = $this->resize_image( $movefile['file'], $uniqueFilename, $error_message );
 
-												if ($error_message != ''){
+												if ( $error_message != '' ){
 													$arr_response["messages"][] = $error_message;
 												}
 
 
-												if ($copied_and_resized) {
+												if ( $copied_and_resized ) {
 
 
 													// delete previous image
-													$this->remove_image($file_type);
+													$this->remove_image( $file_type );
 
 													// save option
-													$pwacommerce_options->update_settings($file_type, $uniqueFilename);
+													$pwacommerce_options->update_settings( $file_type, $uniqueFilename );
 
 													// add path in the response
 													$arr_response['status'] = 1;
@@ -275,8 +275,8 @@ class Admin_Ajax {
 												}
 
 												// remove file from the default uploads folder
-												if (file_exists($movefile['file']))
-													unlink($movefile['file']);
+												if ( file_exists( $movefile['file'] ) )
+													unlink( $movefile['file'] );
 											}
 										}
 									}
@@ -284,27 +284,27 @@ class Admin_Ajax {
 							}
 						}
 
-						if ($has_uploaded_files == false){
+						if ( $has_uploaded_files == false ){
 							$arr_response['messages'][] = "Please upload an image!";
 						}
 					}
 				}
 
-			} elseif ($action == 'delete'){
+			} elseif ( $action == 'delete' ){
 
 				// delete icon
 
-					if (array_key_exists($_GET['source'], Uploads::$allowed_files)) {
+					if ( array_key_exists( $_GET['source'], Uploads::$allowed_files ) ) {
 
 						$file_type = $_GET['source'];
 
 						if ( $file_type === 'icon' ) {
 
 							// get the previous file name from the options table
-							$this->remove_image($file_type);
+							$this->remove_image( $file_type );
 
 							// save option with an empty value
-							$pwacommerce_options->update_settings($file_type, '');
+							$pwacommerce_options->update_settings( $file_type, '' );
 
 							$arr_response['status'] = 1;
 						}
@@ -312,7 +312,7 @@ class Admin_Ajax {
 				}
 
 			// echo json with response
-			echo json_encode($arr_response);
+			echo json_encode( $arr_response );
 		}
 
 		exit();
@@ -323,39 +323,39 @@ class Admin_Ajax {
 	 * Resize & copy image using Wordpress methods
 	 *
 	 */
-	protected function resize_image($file_path, $file_name, &$error_message = '')
+	protected function resize_image( $file_path, $file_name, &$error_message = '' )
 	{
 
 		$copied_and_resized = false;
 
 		$arrMaximumSize = Uploads::$allowed_files['icon'];
 
-		$image = wp_get_image_editor($file_path);
+		$image = wp_get_image_editor( $file_path );
 
-		if (!is_wp_error($image)) {
+		if ( !is_wp_error( $image ) ) {
 
 			$image_size = $image->get_size();
 
-			foreach (Uploads::$manifest_sizes as $manifest_size) {
+			foreach ( Uploads::$manifest_sizes as $manifest_size ) {
 
-				$manifest_image = wp_get_image_editor($file_path);
-				$manifest_image->resize($manifest_size, $manifest_size, true);
-				$manifest_image->save(PWACOMMERCE_FILES_UPLOADS_DIR . $manifest_size . $file_name);
+				$manifest_image = wp_get_image_editor( $file_path );
+				$manifest_image->resize( $manifest_size, $manifest_size, true );
+				$manifest_image->save( PWACOMMERCE_FILES_UPLOADS_DIR . $manifest_size . $file_name );
 			}
 
 			// if the image exceeds the size limits
-			if ($image_size['width'] > $arrMaximumSize['max_width'] || $image_size['height'] > $arrMaximumSize['max_height']) {
+			if ( $image_size['width'] > $arrMaximumSize['max_width'] || $image_size['height'] > $arrMaximumSize['max_height'] ) {
 
 				// resize and copy to the plugin uploads folder
-				$image->resize($arrMaximumSize['max_width'], $arrMaximumSize['max_height']);
-				$image->save(PWACOMMERCE_FILES_UPLOADS_DIR . $file_name);
+				$image->resize( $arrMaximumSize['max_width'], $arrMaximumSize['max_height'] );
+				$image->save( PWACOMMERCE_FILES_UPLOADS_DIR . $file_name );
 
 				$copied_and_resized = true;
 
 			} else {
 
 				// copy file without resizing to the plugin uploads folder
-				$copied_and_resized = copy($file_path, PWACOMMERCE_FILES_UPLOADS_DIR . $file_name);
+				$copied_and_resized = copy( $file_path, PWACOMMERCE_FILES_UPLOADS_DIR . $file_name );
 			}
 
 		} else {
@@ -383,11 +383,11 @@ class Admin_Ajax {
 		if ($previous_file_path != '') {
 			$pwacommerce_uploads = new Uploads();
 
-			foreach (Uploads::$manifest_sizes as $manifest_size) {
-				$pwacommerce_uploads->remove_uploaded_file($manifest_size . $previous_file_path);
+			foreach ( Uploads::$manifest_sizes as $manifest_size ) {
+				$pwacommerce_uploads->remove_uploaded_file( $manifest_size . $previous_file_path );
 			}
 
-			return $pwacommerce_uploads->remove_uploaded_file($previous_file_path);
+			return $pwacommerce_uploads->remove_uploaded_file( $previous_file_path );
 		}
 
 		return false;
