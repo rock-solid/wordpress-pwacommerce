@@ -94,7 +94,7 @@ if ( $icon_path != "" ) {
 			</form>
 			<h2>Add To Homescreen Icon</h2>
 			<hr class="separator" />
-			<p>Add an icon(jpg, jpeg, png, gif) so that customers will be prompted to add your app to their homescreen.</p>
+			<p>Add an icon(<strong>jpg, jpeg, png, gif</strong>) so that customers will be prompted to add your app to their homescreen.</p>
 			<form name="pwacommerce_editimages_form" id="pwacommerce_editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=pwacommerce_editimages&type=upload" method="post" enctype="multipart/form-data">
 
 				<!-- upload icon field -->
