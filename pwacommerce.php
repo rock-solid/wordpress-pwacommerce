@@ -3,7 +3,7 @@
 /**
  * Plugin Name: PWAcommerce
  * Description: Turn your E-commerce site into a Progressive Web App
- * Author: pwacommerce.io
+ * Author: pwacommerce.com
  * Version: 0.1
  */
 
