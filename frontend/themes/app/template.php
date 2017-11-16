@@ -19,6 +19,7 @@ $config = [
 	'API_VARIATIONS_URL' => $api_url . 'product-variations/',
 	'API_CHECKOUT_URL' => $api_url . 'proceed-checkout/',
 	'CURRENCY' => get_woocommerce_currency_symbol(),
+	'SHOP_NAME' => get_bloginfo( 'name' ),
 ];
 
 $config_json = wp_json_encode($config);
