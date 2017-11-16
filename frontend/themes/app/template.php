@@ -24,7 +24,7 @@ $config = [
 	'SHOP_NAME' => $site_name,
 ];
 
-$config_json = wp_json_encode($config);
+$config_json = wp_json_encode( $config );
 
 ?>
 
@@ -41,7 +41,7 @@ $config_json = wp_json_encode($config);
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#a333c8">
     <link rel="manifest" href="<?php echo  $api_url . 'export-manifest/' ?>">
-	<?php if ($app_settings['icon'] != ''): ?>
+	<?php if ( $app_settings['icon'] != '' ): ?>
 		<link rel="apple-touch-icon" href="<?php echo $app_settings['icon'];?>" />
     <?php endif;?>
     <link rel="shortcut icon" href="/favicon.ico">

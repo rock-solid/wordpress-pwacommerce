@@ -40,7 +40,7 @@ class Cookie
 	 */
 	public function set_cookie( $cookie_name, $cookie_value, $duration = 172800 )
 	{
-		setcookie( self::$prefix.$cookie_name, $cookie_value, time()+$duration,'/' );
+		setcookie( self::$prefix.$cookie_name, $cookie_value, time() + $duration, '/' );
 	}
 
 }

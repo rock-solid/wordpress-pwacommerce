@@ -23,7 +23,7 @@ class Uploads
 	];
 
 
-	public static $manifest_sizes = [48, 96, 144, 196];
+	public static $manifest_sizes = [ 48, 96, 144, 196 ];
 
 	protected static $htaccess_template = 'frontend/sections/htaccess-template.txt';
 
@@ -38,8 +38,8 @@ class Uploads
 
 		$pwacommerce_uploads_dir = $wp_uploads_dir['basedir'] . '/' . PWACOMMERCE_DOMAIN . '/';
 
-		define('PWACOMMERCE_FILES_UPLOADS_DIR', $pwacommerce_uploads_dir);
-		define('PWACOMMERCE_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . PWACOMMERCE_DOMAIN . '/');
+		define( 'PWACOMMERCE_FILES_UPLOADS_DIR', $pwacommerce_uploads_dir);
+		define( 'PWACOMMERCE_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . PWACOMMERCE_DOMAIN . '/' );
 
 		add_action( 'admin_notices', [ $this, 'display_admin_notices' ] );
 	}
@@ -52,17 +52,17 @@ class Uploads
 	 */
 	public function display_admin_notices()
 	{
-		if (!current_user_can('manage_options')) {
+		if ( !current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
 		// if the directory doesn't exist, display notice
-		if (!file_exists(PWACOMMERCE_FILES_UPLOADS_DIR)) {
+		if ( !file_exists( PWACOMMERCE_FILES_UPLOADS_DIR ) ) {
 			echo '<div class="error"><p><b>Warning!</b> The ' . PWACOMMERCE_PLUGIN_NAME . ' uploads folder does not exist: ' . PWACOMMERCE_FILES_UPLOADS_DIR . '</p></div>';
 			return;
 		}
 
-		if (!is_writable(PWACOMMERCE_FILES_UPLOADS_DIR)) {
+		if ( !is_writable( PWACOMMERCE_FILES_UPLOADS_DIR ) ) {
 			echo '<div class="error"><p><b>Warning!</b> The ' . PWACOMMERCE_PLUGIN_NAME . ' uploads folder is not writable: ' . PWACOMMERCE_FILES_UPLOADS_DIR . '</p></div>';
 			return;
 		}
@@ -82,12 +82,12 @@ class Uploads
 		$pwacommerce_uploads_dir = $wp_uploads_dir['basedir'] . '/' . PWACOMMERCE_DOMAIN . '/';
 
 		// check if the uploads folder exists and is writable
-		if (file_exists($wp_uploads_dir['basedir']) && is_dir($wp_uploads_dir['basedir']) && is_writable($wp_uploads_dir['basedir'])) {
+		if ( file_exists( $wp_uploads_dir['basedir'] ) && is_dir( $wp_uploads_dir['basedir'] ) && is_writable( $wp_uploads_dir['basedir'] ) ) {
 
 			// if the directory doesn't exist, create it
-			if (!file_exists($pwacommerce_uploads_dir)) {
+			if ( !file_exists( $pwacommerce_uploads_dir ) ) {
 
-				mkdir($pwacommerce_uploads_dir, 0777);
+				mkdir( $pwacommerce_uploads_dir, 0777 );
 
 				// add .htaccess file in the uploads folder
 				$this->set_htaccess_file();
@@ -105,19 +105,19 @@ class Uploads
 	{
 		$pwacommerce_options = new Options();
 
-		$image_path = $pwacommerce_options->get_setting('icon');
+		$image_path = $pwacommerce_options->get_setting( 'icon' );
 
-		foreach (self::$manifest_sizes as $manifest_size) {
-			$this->remove_uploaded_file($manifest_size . $image_path);
+		foreach ( self::$manifest_sizes as $manifest_size ) {
+			$this->remove_uploaded_file( $manifest_size . $image_path );
 		}
 
-		$this->remove_uploaded_file($image_path);
+		$this->remove_uploaded_file( $image_path );
 
 		// remove htaccess file
 		$this->remove_htaccess_file();
 
 		// delete folder
-		rmdir(PWACOMMERCE_FILES_UPLOADS_DIR);
+		rmdir( PWACOMMERCE_FILES_UPLOADS_DIR );
 	}
 
 
@@ -127,10 +127,11 @@ class Uploads
 	 * @param $file_path
 	 * @return string
 	 */
-	public function get_file_url($file_path){
+	public function get_file_url( $file_path )
+	{
 
-		if (file_exists(PWACOMMERCE_FILES_UPLOADS_DIR.$file_path)){
-			return PWACOMMERCE_FILES_UPLOADS_URL.$file_path;
+		if ( file_exists( PWACOMMERCE_FILES_UPLOADS_DIR . $file_path ) ) {
+			return PWACOMMERCE_FILES_UPLOADS_URL . $file_path;
 		}
 
 		return '';
@@ -143,12 +144,13 @@ class Uploads
 	 * @return bool
 	 *
 	 */
-	public function remove_uploaded_file($file_path){
+	public function remove_uploaded_file( $file_path )
+	{
 
 		// check the file exists and remove it
-		if ($file_path != ''){
-			if (file_exists(PWACOMMERCE_FILES_UPLOADS_DIR.$file_path))
-				return unlink(PWACOMMERCE_FILES_UPLOADS_DIR.$file_path);
+		if ( $file_path != '' ) {
+			if ( file_exists( PWACOMMERCE_FILES_UPLOADS_DIR . $file_path ) )
+				return unlink( PWACOMMERCE_FILES_UPLOADS_DIR . $file_path );
 		}
 	}
 
@@ -162,19 +164,19 @@ class Uploads
 	 */
 	protected function set_htaccess_file()
 	{
-		$file_path = PWACOMMERCE_FILES_UPLOADS_DIR.'.htaccess';
+		$file_path = PWACOMMERCE_FILES_UPLOADS_DIR . '.htaccess';
 
-		if (!file_exists($file_path)){
+		if ( !file_exists( $file_path ) ){
 
-			if (is_writable(PWACOMMERCE_FILES_UPLOADS_DIR)){
+			if ( is_writable( PWACOMMERCE_FILES_UPLOADS_DIR ) ){
 
 				$template_path = PWACOMMERCE_PLUGIN_PATH . self::$htaccess_template;
 
-				if (file_exists($template_path)){
+				if ( file_exists( $template_path ) ){
 
-					$fp = @fopen($file_path, "w");
-					fwrite($fp, file_get_contents($template_path));
-					fclose($fp);
+					$fp = @fopen( $file_path, "w" );
+					fwrite( $fp, file_get_contents( $template_path ) );
+					fclose( $fp );
 
 					return true;
 				}
@@ -195,10 +197,10 @@ class Uploads
 	protected function remove_htaccess_file()
 	{
 
-		$file_path = PWACOMMERCE_FILES_UPLOADS_DIR.'.htaccess';
+		$file_path = PWACOMMERCE_FILES_UPLOADS_DIR . '.htaccess';
 
-		if (file_exists($file_path)){
-			unlink($file_path);
+		if ( file_exists( $file_path ) ){
+			unlink( $file_path );
 		}
 	}
 }

@@ -40,11 +40,11 @@ class Frontend_Init {
 		$load_app_cookie = $cookie_manager->get_cookie( 'load_app' );
 
 		// If the load_app cookie is not set, verify the device
-		if ($load_app_cookie === null) {
+		if ( $load_app_cookie === null ) {
 			$detect = new Detect();
 			$load_app = $detect->detect_device();
 
-		} elseif ($load_app_cookie == 1) {
+		} elseif ( $load_app_cookie == 1 ) {
 
 			// The cookie was already set for the device, so we can load the app
 			$load_app = true;
@@ -70,11 +70,11 @@ class Frontend_Init {
 	 */
 	public function load_app()
 	{
-		add_filter("stylesheet", [ $this, "app_theme" ], 11 );
-		add_filter("template", [ $this, "app_theme" ], 11);
+		add_filter( 'stylesheet', [ $this, 'app_theme' ], 11 );
+		add_filter( 'template', [ $this, 'app_theme' ], 11);
 
-		add_filter('theme_root', [ $this, 'app_theme_root' ], 11);
-		add_filter('theme_root_uri', [ $this, 'app_theme_root' ], 11);
+		add_filter( 'theme_root', [ $this, 'app_theme_root' ], 11 );
+		add_filter( 'theme_root_uri', [ $this, 'app_theme_root' ], 11 );
 	}
 
 
@@ -115,19 +115,19 @@ class Frontend_Init {
 
 		$settings = [];
 
-		foreach ($frontend_options as $option_name){
+		foreach ( $frontend_options as $option_name ){
 
-			$settings[$option_name] = $options->get_setting($option_name);
+			$settings[$option_name] = $options->get_setting( $option_name );
 		}
 
-		$file_path = $options->get_setting('icon');
+		$file_path = $options->get_setting( 'icon' );
 
-		if ($file_path == '' || !file_exists( PWACOMMERCE_FILES_UPLOADS_DIR . $file_path ) ) {
+		if ( $file_path == '' || !file_exists( PWACOMMERCE_FILES_UPLOADS_DIR . $file_path ) ) {
 			$settings['icon'] = '';
 
 		} else {
 
-			$settings['icon'] = PWACOMMERCE_FILES_UPLOADS_URL.$file_path;
+			$settings['icon'] = PWACOMMERCE_FILES_UPLOADS_URL . $file_path;
 		}
 
 		return $settings;

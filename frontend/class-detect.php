@@ -35,7 +35,7 @@ class Detect {
 			$is_supported_os = 1;
 		}
 
-		if ( $detect->is('WebKit') ) {
+		if ( $detect->is( 'WebKit' ) ) {
 			$is_supported_browser = 1;
 		}
 

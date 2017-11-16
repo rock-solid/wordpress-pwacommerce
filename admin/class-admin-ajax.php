@@ -30,7 +30,7 @@ class Admin_Ajax {
 
 				if ( isset( $_POST['pwacommerce_settings_analyticsid'] ) &&
 				isset( $_POST['pwacommerce_settings_service_worker_installed'] ) &&
-				is_numeric( $_POST['pwacommerce_settings_service_worker_installed'] )) {
+				is_numeric( $_POST['pwacommerce_settings_service_worker_installed'] ) ) {
 
 					// save analytics id
 					$new_analytics_id = sanitize_text_field( $_POST['pwacommerce_settings_analyticsid'] );
@@ -163,7 +163,7 @@ class Admin_Ajax {
 	 */
 	public function editimages()
 	{
-		if (current_user_can( 'manage_options' )){
+		if ( current_user_can( 'manage_options' ) ) {
 
 			$pwacommerce_options = new Options();
 
@@ -178,9 +178,9 @@ class Admin_Ajax {
 				'messages' => [],
 			];
 
-			if ( $action == 'upload' ){
+			if ( $action == 'upload' ) {
 
-				if ( !empty( $_FILES ) && sizeof( $_FILES ) > 0 ){
+				if ( !empty( $_FILES ) && sizeof( $_FILES ) > 0 ) {
 
 					require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
@@ -235,14 +235,14 @@ class Admin_Ajax {
 									// check file extension
 									if ( !in_array( strtolower( $fileExtension ), $arrAllowedExtensions ) ) {
 
-										$arr_response['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your icon!";
+										$arr_response['messages'][] = "Error saving image, please add a " . implode( ' or ', $arrAllowedExtensions ) . " image for your icon!";
 
 									} else {
 
-										$uniqueFilename = $file_type.'_'.time().'.'.$fileExtension;
+										$uniqueFilename = $file_type . '_' . time() . '.' . $fileExtension;
 
 										// upload to the default uploads folder
-										$upload_overrides = array( 'test_form' => false );
+										$upload_overrides = [ 'test_form' => false ];
 										$movefile = wp_handle_upload( $info, $upload_overrides );
 
 										if ( is_array( $movefile ) ) {
@@ -377,7 +377,7 @@ class Admin_Ajax {
 
 
 		// get previous image filename
-		$previous_file_path = $pwacommerce_options->get_setting('icon');
+		$previous_file_path = $pwacommerce_options->get_setting( 'icon' );
 
 		// check the file exists and remove it
 		if ($previous_file_path != '') {
