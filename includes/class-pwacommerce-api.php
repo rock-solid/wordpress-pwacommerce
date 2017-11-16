@@ -6,13 +6,13 @@ use \PWAcommerce\Includes\Options;
 use \PWAcommerce\Includes\Uploads;
 
 /**
- *  Class that sets up the apps api
+ *  Class that sets up the rest routes for the app
  */
 class PWAcommerce_API
 {
 
 	/**
-	 * Returns the woocommerce api client with configurations in place
+	 * Returns an instance of the woocommerce api client with configurations in place
 	 */
 	protected function get_client() {
 
@@ -33,6 +33,7 @@ class PWAcommerce_API
 	 * Registers all the plugins rest routes
 	 */
 	public function register_pwacommerce_routes() {
+
 		$pwacommerce_options = new Options();
 
 		// Checks that the api keys were added to the database
@@ -90,6 +91,7 @@ class PWAcommerce_API
 
 		$site_name = get_bloginfo('name');
 
+		// add basic settings to manifest
 		$arr_manifest = [
 			'name' => $site_name,
 			'short_name' => $site_name,
@@ -100,8 +102,9 @@ class PWAcommerce_API
 			'background_color' => '#a333c8',
 		];
 
+		// add paths to all icon sizes if there is an icon uploaded
 		$options = new Options();
-		$icon = $options->get_setting('icon');
+		$icon = $options->get_setting( 'icon' );
 
 		if ( $icon != '' ) {
 
@@ -129,91 +132,104 @@ class PWAcommerce_API
 	}
 
 	/**
-	 * Adds the items that came with the request to the cart and redirects to the desktop checkout page
-	 */
-	public function checkout_redirect ( \WP_REST_Request $request ) {
-
-
-		$products = json_decode($request['items'], true);
-
-		do_action( 'woocommerce_set_cart_cookies', TRUE );
-		global $woocommerce;
-
-		foreach( $products as $product ) {
-
-			if  ( isset( $product['id'] ) && isset( $product['quantity'] ) && is_numeric( $product['id']) && is_numeric( $product['quantity'] ) )  {
-
-				if ( isset( $product['variationId']) && is_numeric( $product['variationId'] ) ) {
-					$woocommerce->cart->add_to_cart($product['id'], $product['quantity'], $product['variationId'] );
-				} else {
-					$woocommerce->cart->add_to_cart($product['id'], $product['quantity']);
-				}
-
-			}
-		}
-
-
-		wp_redirect($woocommerce->cart->get_checkout_url());
-		exit();
-
-	}
-
-	/**
-	 * Returns a json with the categories info
+	 * Returns a json response with 100 categories
 	 */
 	public function view_categories( \WP_REST_Request $request ) {
+
 		$woocommerce = $this->get_client();
-		return $woocommerce->get( 'products/categories' );
+
+		return $woocommerce->get( 'products/categories', [ 'per_page' => 100 ] );
 
 	}
 
 	/**
-	 * Returns a json with the reviews of a product based on the product id
-	 */
-	public function view_reviews( \WP_REST_Request $request ) {
-		$woocommerce = $this->get_client();
-		$id = $request->get_param('id');
-		return $woocommerce->get( "products/$id/reviews" );
-	}
-
-	/**
-	 * Returns a json with a products info based on its id
-	 */
-	public function view_product( \WP_REST_Request $request ){
-		$woocommerce = $this->get_client();
-		$id = $request->get_param('id');
-		return $woocommerce->get( "products/$id" );
-	}
-
-	/**
-	 * Returns a json with the info of all the products in a category if the request has a categId param
-	 * if the categoryId param is missing it returns a json with the info of all featured products, if there are none
-	 * it returns the info for the last 10 products added to the site
+	 * Returns a json response with the info of the latest 100 products in a category if the request has a categId param
+	 * if the categoryId param is missing it returns a json with the info of the latest 100 featured products, if there are none
+	 * it returns the info of the last 10 products added to the site
 	 */
 	public function view_products( \WP_REST_Request $request ) {
 		$woocommerce = $this->get_client();
 
 		if ( isset( $request['categId'] ) )  {
-			return $woocommerce->get('products', array('category' => $request['categId'] ) );
+			return $woocommerce->get( 'products', [ 'category' => $request['categId'], 'per_page' => 100, 'orderby' => 'date'  ] );
 		}
 
-		$featured = $woocommerce->get('products', array('featured' => true));
+		$featured = $woocommerce->get( 'products', [ 'featured' => true , 'per_page' => 100, 'orderby' => 'date' ] );
 
 		if ( !empty( $featured ) ) {
 			return $featured;
 		}
 
-		return $woocommerce->get('products', array('per_page' => 10, 'orderby' => 'date'));
+		return $woocommerce->get( 'products', ['per_page' => 10, 'orderby' => 'date' ] );
 
 	}
 
+
 	/**
-	 * Returns a json with the variatiosn of a product and their info based on the product's id
+	 * Returns a json response with a product based on its id
+	 */
+	public function view_product( \WP_REST_Request $request ){
+
+				$woocommerce = $this->get_client();
+				$id = $request->get_param( 'id' );
+
+				return $woocommerce->get( "products/$id" );
+	}
+
+	/**
+	 * Returns a json response with the latest 100 reviews of product based on its id
+	 */
+	public function view_reviews( \WP_REST_Request $request ) {
+
+		$woocommerce = $this->get_client();
+		$id = $request->get_param( 'id' );
+
+		return $woocommerce->get( "products/$id/reviews", [ 'per_page' => 100, 'orderby' => 'date' ] );
+	}
+
+	/**
+	 * Returns a json response with the variations of product based on its id
 	 */
 	public function view_product_variations( \WP_REST_Request $request ) {
+
 		$woocommerce = $this->get_client();
-		$id = $request->get_param('id');
-		return $woocommerce->get("products/$id/variations", array('per_page' => 100));
+		$id = $request->get_param( 'id' );
+
+		return $woocommerce->get( "products/$id/variations", [ 'per_page' => 100 ] );
+	}
+
+	/**
+	 * Adds the items that came with the request to the cart and redirects to the desktop checkout page
+	 */
+	public function checkout_redirect ( \WP_REST_Request $request ) {
+
+
+		$products = json_decode( $request['items'], true );
+
+		// make sure the cart content is set as cookie
+		do_action( 'woocommerce_set_cart_cookies', true );
+		global $woocommerce;
+
+		foreach( $products as $product ) {
+
+			if  ( isset( $product['id'] ) && isset( $product['quantity'] ) && is_numeric( $product['id'] ) && is_numeric( $product['quantity'] ) )  {
+
+				// if the product has a variation add it as a variable product
+				if ( isset( $product['variationId'] ) && is_numeric( $product['variationId'] ) ) {
+
+					$woocommerce->cart->add_to_cart( $product['id'], $product['quantity'], $product['variationId'] );
+
+				} else {
+
+					$woocommerce->cart->add_to_cart( $product['id'], $product['quantity'] );
+				}
+
+			}
+		}
+
+		wp_redirect( $woocommerce->cart->get_checkout_url() );
+		exit();
+
 	}
 }
 
