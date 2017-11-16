@@ -70,11 +70,11 @@ class Frontend_Init {
 	 */
 	public function load_app()
 	{
-		add_filter("stylesheet", [ &$this, "app_theme" ], 11 );
-		add_filter("template", [ &$this, "app_theme" ], 11);
+		add_filter("stylesheet", [ $this, "app_theme" ], 11 );
+		add_filter("template", [ $this, "app_theme" ], 11);
 
-		add_filter('theme_root', [ &$this, 'app_theme_root' ], 11);
-		add_filter('theme_root_uri', [ &$this, 'app_theme_root' ], 11);
+		add_filter('theme_root', [ $this, 'app_theme_root' ], 11);
+		add_filter('theme_root_uri', [ $this, 'app_theme_root' ], 11);
 	}
 
 

@@ -18,7 +18,7 @@ class Uploads
 		'icon' => [
 			'max_width' => 256,
 			'max_height' => 256,
-			'extensions' => array('jpg', 'jpeg', 'png','gif')
+			'extensions' => [ 'jpg', 'jpeg', 'png','gif' ]
 		],
 	];
 
@@ -41,7 +41,7 @@ class Uploads
 		define('PWACOMMERCE_FILES_UPLOADS_DIR', $pwacommerce_uploads_dir);
 		define('PWACOMMERCE_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . PWACOMMERCE_DOMAIN . '/');
 
-		add_action( 'admin_notices', array( $this, 'display_admin_notices' ) );
+		add_action( 'admin_notices', [ $this, 'display_admin_notices' ] );
 	}
 
 

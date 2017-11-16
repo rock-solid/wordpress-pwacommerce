@@ -34,7 +34,7 @@ class Options {
 		// If the passed param is an array, return an array with all the settings.
 		if ( is_array( $option ) ) {
 
-			$settings = array();
+			$settings = [];
 
 			foreach ( $option as $option_name => $option_value ) {
 
