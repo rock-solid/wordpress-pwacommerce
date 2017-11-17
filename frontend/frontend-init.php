@@ -50,10 +50,6 @@ class Frontend_Init {
 			$load_app = true;
 		}
 
-		if ( strpos( $_SERVER['REQUEST_URI'], 'checkout' ) ) {
-			$load_app = false;
-		}
-
 		// We have a mobile device and the app is visible, so we can load the app
 		if ( $load_app ) {
 			$this->load_app();
@@ -81,20 +77,41 @@ class Frontend_Init {
 	/**
 	 * Return the theme name
 	 */
-	public function app_theme()
+	public function app_theme($desktop_theme)
 	{
+
+		if ( $this->is_checkout_url() ) {
+			return $desktop_theme;
+		}
+
 		return 'app';
+	}
+
+	public function is_checkout_url()
+	{
+		$site_url = get_site_url();
+		$checkout_url = wc_get_checkout_url();
+		$request_uri = $_SERVER['REQUEST_URI'];
+
+		$checkout_uri = str_replace($site_url, '', $checkout_url);
+		return strpos( $request_uri, $checkout_uri );
 	}
 
 
 	/**
 	 * Return path to the mobile themes folder
 	 */
-	public function app_theme_root()
+	public function app_theme_root($destkop_theme_root)
 	{
+
+		if ( $this->is_checkout_url() ) {
+			return $destkop_theme_root;
+		}
 
 		return PWACOMMERCE_PLUGIN_PATH . 'frontend/themes';
 	}
+
+
 
 
 	/**
