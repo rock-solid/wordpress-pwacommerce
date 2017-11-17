@@ -170,10 +170,10 @@ class PWAcommerce_API
 	 */
 	public function view_product( \WP_REST_Request $request ){
 
-				$woocommerce = $this->get_client();
-				$id = $request->get_param( 'id' );
+		$woocommerce = $this->get_client();
+		$id = $request->get_param( 'id' );
 
-				return $woocommerce->get( "products/$id" );
+		return $woocommerce->get( "products/$id" );
 	}
 
 	/**
