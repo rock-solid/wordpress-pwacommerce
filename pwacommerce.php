@@ -1,10 +1,15 @@
 <?php
 
-/**
+ /**
  * Plugin Name: PWAcommerce
- * Description: Turn your E-commerce site into a Progressive Web App
- * Author: pwacommerce.com
+ * Plugin URI:  http://wordpress.org/plugins/pwacommerce/
+ * Description: WooCommerce mobile plugin to package your online store into a Progressive Web App.
+ * Author: PWAcommerce.com
+ * Author URI: http://pwacommerce.com
  * Version: 0.1
+ * Copyright (c) 2017 PWAcommerce.com
+ * License: The PWAcommerce plugin is Licensed under the Apache License, Version 2.0
+ * Text Domain: pwacommerce
  */
 
 namespace PWAcommerce;
