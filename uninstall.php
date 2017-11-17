@@ -6,6 +6,7 @@ if( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 require_once( 'vendor/autoload.php' );
+require_once( 'core/config.php' );
 
 $pwacommerce_options = new Includes\Options();
 
