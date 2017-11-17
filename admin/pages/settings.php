@@ -114,7 +114,7 @@ if ( $icon_path != "" ) {
 					<div class="pwacommerce_editimages_changeicon_cancel cancel-link" style="display: none;">
 						<a href="javascript:void(0);" class="cancel">cancel</a>
 					</div>
-					<div class="field-message error" id="error_icon_container"></div>
+					<p class="field-message error" id="error_icon_container"></p>
 
 				</div>
 
