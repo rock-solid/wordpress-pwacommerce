@@ -8,7 +8,7 @@
  * Author URI: http://pwacommerce.com
  * Version: 0.1
  * Copyright (c) 2017 PWAcommerce.com
- * License: The PWAcommerce plugin is Licensed under the Apache License, Version 2.0
+ * License: The PWAcommerce plugin is Licensed under the Apache License, Version 3.0
  * Text Domain: pwacommerce
  */
 
