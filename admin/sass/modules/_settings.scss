@@ -24,17 +24,8 @@
       width: 13px;
       height: 13px;
       z-index: 3;
-      @include wbz-inline-icon(close-x, 9px);
-      color: #ffffff;
-      background: $base-color-darken;
       @include wbz-border-radius(16px);
       padding: 3px;
-
-      &::before {
-        top: -4px;
-        left: 0px;
-        display: block;
-      }
     }
   }
   .custom-upload input[type="file"] {

@@ -1,47 +1,4 @@
 /************************************************/
-/*		mixins for css3 animations
-/************************************************/
-
-@mixin wbz-transform-origin($value, $important: no) {
-  @if $important == important {
-    -webkit-transform-origin: $value !important;
-    -moz-transform-origin: $value !important;
-    transform-origin: $value !important;
-  } @else {
-    -webkit-transform-origin: $value;
-    -moz-transform-origin: $value;
-    transform-origin: $value;
-  }
-}
-@mixin wbz-transform($value, $important: no) {
-  @if $important == important {
-    -webkit-transform: $value !important;
-    -moz-transform: $value !important;
-    transform: $value !important;
-  } @else {
-    -webkit-transform: $value;
-    -moz-transform: $value;
-    transform: $value;
-  }
-}
-@mixin wbz-transition-timing($value, $important: no) {
-  @if $important == important {
-    -webkit-transition-timing-function: $value !important;
-    -moz-transition-timing-function: $value !important;
-    transition-timing-function: $value !important;
-  } @else {
-    -webkit-transition-timing-function: $value;
-    -moz-transition-timing-function: $value;
-    transition-timing-function: $value;
-  }
-}
-@mixin wbz-transition($value) {
-  -webkit-transition: $value;
-  -moz-transition: $value;
-  transition: $value;
-}
-
-/************************************************/
 /*		other mixins
 /************************************************/
 @mixin wbz-box-shadow($value, $important: no) {
