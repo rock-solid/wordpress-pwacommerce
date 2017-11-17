@@ -8,7 +8,6 @@ function PWACOMMERCE_EDIT_IMAGES() {
 
   this.send_btn;
   this.deletingIcon = false;
-  this.deletingLogo = false;
 
   /**
    * Init function callled from PWACJSInterface
@@ -433,9 +432,6 @@ function PWACOMMERCE_EDIT_IMAGES() {
 
     if (JSON.uploaded_icon != undefined)
       JSObject.displayImage('icon', JSON.uploaded_icon);
-
-    if (JSON.uploaded_logo != undefined)
-      JSObject.displayImage('logo', JSON.uploaded_logo);
 
     if (response == true && JSON.messages.length == 0) {
       // show message
