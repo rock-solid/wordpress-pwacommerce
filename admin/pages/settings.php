@@ -108,7 +108,9 @@ if ( $icon_path != "" ) {
 							<a href="#" class="button button-secondary">Browse</a>
 						</div>
 
-						<a href="javascript:void(0)" id="pwacommerce_editimages_icon_removenew" class="remove" style="display: none;"></a>
+						<a href="javascript:void(0)" id="pwacommerce_editimages_icon_removenew" class="remove" style="display: none;">
+							<img  src="<?php echo plugins_url() . '/' . PWACOMMERCE_DOMAIN . "/admin/images/btn_close_msg.png"; ?>" />
+						</a>
 					</div>
 					<!-- cancel upload icon button -->
 					<div class="pwacommerce_editimages_changeicon_cancel cancel-link" style="display: none;">
