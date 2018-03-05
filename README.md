@@ -1,4 +1,4 @@
-# pwacommerce
+# PWACommerce
 
 https://wordpress.org/plugins/pwacommerce/
 
