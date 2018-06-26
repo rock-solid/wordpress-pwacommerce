@@ -28,8 +28,6 @@ It has been tested on WordPress 4.8 and later.
 
 Some of the key features of progressive web apps are:
 
-- Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
-
 - **Add to Homescreen**. Readers can add the mobile web application to their homescreen and run it in full-screen mode, making it easy to launch and return to your app.
 
 - Smooth animations, scrolling and navigations keep the experience silky smooth.
