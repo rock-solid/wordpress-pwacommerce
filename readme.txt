@@ -7,7 +7,7 @@ Stable tag: 0.1
 Requires PHP: 5.4
 License: GPLv2 or later
 
-Mobile plugin that allows you to transform your WooCommerce online store into a Progressive Web App.
+[PWACommerce](https://pwacommerce.com) is a mobile plugin that helps you transform your WooCommerce shop into a progressive mobile web application.
 
 == Description ==
 
