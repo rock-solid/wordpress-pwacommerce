@@ -63,7 +63,7 @@ if ( $icon_path != "" ) {
 				<a href="javascript:void(0)" id="pwacommerce_settings_send_btn" class="button button-primary button-large">Save</a>
 			</form>
 			<div class="spacer-10"></div>
-			<h2>Woocommerce Keys</h2>
+			<h2>WooCommerce Keys</h2>
 			<hr class="separator" />
 			<form name="pwacommerce_wookeys_form" id="pwacommerce_wookeys_form" action="<?php echo admin_url( 'admin-ajax.php' ); ?>?action=pwacommerce_wookeys" method="post">
 				<p class="field-message error" id="error_consumerkey_container"></p>
