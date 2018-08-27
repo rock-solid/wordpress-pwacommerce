@@ -147,7 +147,7 @@ if ( $icon_path != "" ) {
 			<ul>
 				<li><strong>&#9758; WEB PUSH NOTIFICATIONS &#9756;</strong> <br/> <p>Remind or re-engage your mobile users even after they leave your app. Web push notifications can help you increase engagement by 4X and those users spend twice as much time on the app.</p></li>
 				<li><strong>&#9758; IMPROVED CONVERSIONS &#9756;</strong> <br/> <p>Alibaba.com is the world’s largest online business-to-business (B2B) trading platform, serving 200+ countries and regions. After upgrading their site to a Progressive Web App (PWA), they saw a 76 percent increase in total conversions across browsers.</p></li>
-				<li><strong>&#9758; OFF-LINE MODE &#9756;</strong> <br/> <p>53% of users will abandon a site if it takes longer than 3 seconds to load! The mobile app theme responds quickly to user interactions with silky smooth animations and no janky scrolling</p></li>
+				<li><strong>&#9758; OFFLINE MODE &#9756;</strong> <br/> <p>53% of users will abandon a site if it takes longer than 3 seconds to load! The mobile app theme responds quickly to user interactions with silky smooth animations and no janky scrolling</p></li>
 			</ul>
 
 			<a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/" id="pwacommerce_settings_send_btn" class="button button-primary button-large">Pre-Order PRO Now</a>
