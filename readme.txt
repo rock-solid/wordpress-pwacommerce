@@ -1,6 +1,6 @@
 === PWACommerce - WooCommerce Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps ===
 Contributors: cborodescu, anghelalexandra, abarbulescu
-Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create e-commerce app, ios app, make an app, mobile app plugin, mobile application, mobile woocommerce app, mobile converter, mobile plugin, native app plugin, ecommere app theme, woocommerce to mobile app, woocommerce android, woocommerce app, woocommerce iphone, woocommerce mobile, woocommerce mobile app
+Tags: pwa, progressive web apps, react, redux, semantic ui, rest api, android, iOS, html5, iphone, mobile, mobile web app, safari, smartphone, webkit, app builder, apple, apps, convert to app, create e-commerce app, ios app, make an app, mobile app plugin, mobile application, mobile woocommerce app, mobile plugin, ecommerce app theme, woocommerce to mobile app, woocommerce android, woocommerce app, woocommerce iphone, woocommerce mobile, woocommerce mobile app
 Requires at least: 4.8
 Tested up to: 4.9.8
 Stable tag: 0.5
@@ -11,7 +11,7 @@ License: GPLv2 or later
 
 == Description ==
 
-**[PWACommerce](https://pwacommerce.com) is a mobile plugin that helps you transform your WooCommerce shop into a progressive mobile web application. It comes with multiple ecommerce app themes that you can purchase individually or as a bundle.**
+**[PWACommerce](https://pwacommerce.com) is a mobile plugin that helps you transform your WooCommerce shop into a progressive mobile web application implemented with React, Redux and Semantic UI. It comes with multiple ecommerce app themes that you can purchase individually or as a bundle.**
 
 PWACommerce is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
@@ -33,6 +33,8 @@ PWACommerce also comes with a **PRO version** suitable for online stores that wa
 
 * **Offline Mode**. The app's shell and content is cached using service workers. Categories and products are saved in the browser’s local storage while your users navigate through the app, together with products added to the shopping cart. This offers a full app-like experience to your users, allowing them to continue using the app even when they don't have a network connection.
 
+* **Web Push Notifications**. We have integrated with the OneSignal WordPress plugin, allowing you to engage users through push notifications. This is one of the most requested PWA features, proven to increase user engagement by up to 4x.
+
 * We take pride in offering fantastic [PWACommerce](https://pwacommerce.com) **maintenance and hands-on support**. Our team of friendly progressive web app experts makes sure technology doesn't stand in your way.
 
 * **Access to multiple app themes** that can be purchased individually or as a bundle.
@@ -40,6 +42,15 @@ PWACommerce also comes with a **PRO version** suitable for online stores that wa
 * **Web Push Notifications**. We have integrated with the OneSignal WordPress plugin, allowing you to engage users through push notifications. This is one of the most requested PWA features, proven to increase user engagement by up to 4x.
 
 Your mobile users will be able to benefit from a rich mobile buying experience on their favorite mobile device without needing to go through an App Store and install anything.
+
+Our **tech stack for developing the mobile PWA** includes:
+
+- [Create-React-App](https://github.com/facebook/create-react-app) for bootstrapping the project.
+- [React-Semantic-UI](https://react.semantic-ui.com/introduction) (the official React integration for Semantic UI) for adding UI components such as buttons, grids, forms, etc.
+- [React-Router](https://reacttraining.com/react-router/) for navigating between screens.
+- [Redux](https://redux.js.org/) for managing the app state.
+- [Jest](https://jestjs.io/) for unit testing.
+- Eslint and the [Airbnb coding standard](https://github.com/airbnb/javascript).
 
 We enjoy writing and maintaining this plugin. If you like it too, please rate us. But if you don't, let us know how we can improve it.
 
@@ -84,7 +95,8 @@ PWAcommerce is supported on iOS and Android smartphones. Compatible browsers: Sa
 = What is the difference between my mobile PWA application and a responsive theme? =
 A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a Progressive Web App combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as:
 
-1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
+1. Offline mode. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
+1. Web push notifications.
 1.  Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
 1.  Smooth animations, scrolling, and navigations keep the experience silky smooth.
 
@@ -129,5 +141,5 @@ Our roadmap currently includes:
 
 We currently have two Github development repositories:
 
-* [https://github.com/appticles/pwacommerce](https://github.com/appticles/pwacommerce) - The plugin files, same as you will find for download on Wordpress.org.
+* [https://github.com/appticles/pwacommerce](https://github.com/appticles/pwacommerce) - The plugin files, same as you will find for download on WordPress.org.
 * [https://github.com/appticles/pwa-theme-woocommerce](https://github.com/appticles/pwa-theme-woocommerce) - Development files for the Progressive Web App implemented with React, Redux and Semantic UI.
