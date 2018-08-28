@@ -11,6 +11,8 @@ use \PWAcommerce\Includes\Uploads;
 class PWAcommerce_API
 {
 
+	public $prefix = 'pwacommerce';
+
 	/**
 	 * Returns an instance of the woocommerce api client with configurations in place
 	 */
@@ -40,17 +42,17 @@ class PWAcommerce_API
 		if ( $pwacommerce_options->get_setting('consumer_key') !== '' &&
 		$pwacommerce_options->get_setting('consumer_secret') !== '' ) {
 
-			register_rest_route( 'pwacommerce', '/export-manifest', [
+			register_rest_route( $this->prefix, '/export-manifest', [
 				'methods' => 'GET',
 				'callback' => [ $this, 'export_manifest' ],
 			]);
 
-			register_rest_route( 'pwacommerce', '/categories', [
+			register_rest_route( $this->prefix, '/categories', [
 				'methods' => 'GET',
 				'callback' => [ $this, 'view_categories' ]
 			]);
 
-			register_rest_route( 'pwacommerce', '/products', [
+			register_rest_route( $this->prefix, '/products', [
 				'methods' => 'GET',
 				'callback' => [ $this, 'view_products' ],
 				'args' => [
@@ -61,22 +63,22 @@ class PWAcommerce_API
 				],
 			]);
 
-			register_rest_route( 'pwacommerce', '/product/(?P<id>\d+)', [
+			register_rest_route( $this->prefix, '/product/(?P<id>\d+)', [
 				'methods' => 'GET',
 				'callback' => [ $this, 'view_product' ]
 			]);
 
-			register_rest_route( 'pwacommerce', '/reviews/(?P<id>\d+)', [
+			register_rest_route( $this->prefix, '/reviews/(?P<id>\d+)', [
 				'methods' => 'GET',
 				'callback' => [ $this, 'view_reviews' ]
 			]);
 
-			register_rest_route( 'pwacommerce', '/product-variations/(?P<id>\d+)', [
+			register_rest_route( $this->prefix, '/product-variations/(?P<id>\d+)', [
 				'methods' => 'GET',
 				'callback' => [ $this, 'view_product_variations' ],
 			]);
 
-			register_rest_route( 'pwacommerce', '/proceed-checkout', [
+			register_rest_route( $this->prefix, '/proceed-checkout', [
 				'methods' => 'POST',
 				'callback' => [ $this, 'checkout_redirect' ],
 			]);
@@ -138,8 +140,23 @@ class PWAcommerce_API
 
 		$woocommerce = $this->get_client();
 
-		return $woocommerce->get( 'products/categories', [ 'per_page' => 100 ] );
+		$filters = [];
 
+		if ( isset( $request['page'] ) && is_numeric( $request['page'] ) )  {
+			$filters['page'] = $request['page'];
+		}
+
+		if ( isset( $request['per_page'] ) && is_numeric( $request['per_page'] ) )  {
+			$filters['per_page'] = $request['per_page'];
+		}
+
+		if ( isset( $request['hide_empty'] ) )  {
+			$filters['hide_empty'] = true;
+		}
+
+		$woocommerce = $this->get_client();
+
+		return $woocommerce->get( 'products/categories', $filters);
 	}
 
 	/**
@@ -150,18 +167,41 @@ class PWAcommerce_API
 	public function view_products( \WP_REST_Request $request ) {
 		$woocommerce = $this->get_client();
 
-		if ( isset( $request['categId'] ) )  {
-			return $woocommerce->get( 'products', [ 'category' => $request['categId'], 'per_page' => 100, 'orderby' => 'date'  ] );
+		$filters = [];
+
+		if ( isset( $request['page'] ) && is_numeric( $request['page'] ) )  {
+			$filters['page'] = $request['page'];
 		}
 
-		$featured = $woocommerce->get( 'products', [ 'featured' => true , 'per_page' => 100, 'orderby' => 'date' ] );
-
-		if ( !empty( $featured ) ) {
-			return $featured;
+		if ( isset( $request['per_page'] ) && is_numeric( $request['per_page'] ) )  {
+			$filters['per_page'] = $request['per_page'];
 		}
 
-		return $woocommerce->get( 'products', ['per_page' => 10, 'orderby' => 'date' ] );
+		if ( isset( $request['category'] ) && is_numeric( $request['category'] ) )  {
+			$filters['category'] = $request['category'];
+		}
 
+		if ( isset( $request['search'] ) )  {
+			$filters['search'] = filter_var( $request['search'], FILTER_SANITIZE_STRING );
+		}
+
+		if ( isset( $request['orderby'] ) && in_array( $request['orderby'], ['id', 'date', 'title', 'include', 'slug'] ) )  {
+			$filters['orderby'] = $request['orderby'];
+		}
+
+		if ( isset( $request['order'] ) && in_array( $request['order'], ['asc', 'desc'] ) )  {
+			$filters['order'] = $request['order'];
+		}
+
+		if ( isset( $request['featured'] ) )  {
+			$featured_products = $woocommerce->get( 'products', array_merge([ 'featured' => true ], $filters) );
+
+			if ( !empty( $featured_products ) ) {
+				return $featured_products;
+			}
+		}
+
+		return $woocommerce->get( 'products', $filters );
 	}
 
 
@@ -202,7 +242,6 @@ class PWAcommerce_API
 	 * Adds the items that came with the request to the cart and redirects to the desktop checkout page
 	 */
 	public function checkout_redirect ( \WP_REST_Request $request ) {
-
 
 		$products = json_decode( $request['items'], true );
 

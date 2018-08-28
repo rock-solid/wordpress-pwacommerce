@@ -43,6 +43,8 @@ if ( $icon_path != "" ) {
 					<h2 class="theme-name">Default Theme</h2>
 				</div>
 			</div>
+			<div class="spacer-10"></div>
+			<h2>General Settings</h2>
 			<hr class="separator" />
 			<form name="pwacommerce_settings_form" id="pwacommerce_settings_form" action="<?php echo admin_url( 'admin-ajax.php' ); ?>?action=pwacommerce_settings" method="post">
 				<label class="textinput">Google Analytics ID:</label>
@@ -52,8 +54,8 @@ if ( $icon_path != "" ) {
 					id="pwacommerce_settings_analyticsid"
 					value="<?php echo esc_attr($analytics_id); ?>"
 					placeholder="UA-xxxxxx-01"
-				>
-				</input> <br/>
+				/>
+				<br/>
 				<p class="field-message error" id="error_analyticsid_container"></p>
 				<div class="spacer-10"></div>
 				<input type="hidden" name="pwacommerce_settings_service_worker_installed" id="pwacommerce_settings_service_worker_installed" value="<?php echo esc_attr($service_worker_installed);?>" />
@@ -63,7 +65,7 @@ if ( $icon_path != "" ) {
 				<a href="javascript:void(0)" id="pwacommerce_settings_send_btn" class="button button-primary button-large">Save</a>
 			</form>
 			<div class="spacer-10"></div>
-			<h2>Woocommerce Keys</h2>
+			<h2>WooCommerce Keys</h2>
 			<hr class="separator" />
 			<form name="pwacommerce_wookeys_form" id="pwacommerce_wookeys_form" action="<?php echo admin_url( 'admin-ajax.php' ); ?>?action=pwacommerce_wookeys" method="post">
 				<p class="field-message error" id="error_consumerkey_container"></p>
@@ -75,8 +77,8 @@ if ( $icon_path != "" ) {
 					id="pwacommerce_wookeys_consumerkey"
 					value="<?php echo $consumer_key == '' ? esc_attr($consumer_key) : "*******************************************" ?>"
 					placeholder="ck_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-				>
-				</input> <br/>
+				/>
+				<br/>
 				<p class="field-message error" id="error_consumersecret_container"></p>
 				<div class="spacer-10"></div>
 				<label class="textinput">Consumer Secret:</label>
@@ -86,15 +88,18 @@ if ( $icon_path != "" ) {
 					id="pwacommerce_wookeys_consumersecret"
 					value="<?php echo $consumer_secret == '' ? esc_attr($consumer_secret) : "*******************************************" ?>"
 					placeholder="cs_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-				>
-				</input> <br/>
+				/>
+				<br/>
 				<p class="field-message error" id="error_consumersecret_container"></p>
 				<div class="spacer-10"></div>
 				<a href="javascript:void(0)" id="pwacommerce_wookeys_send_btn" class="button button-primary button-large">Save</a>
 			</form>
-			<h2>Add To Homescreen Icon</h2>
+			<h2>Add to Homescreen Icon</h2>
 			<hr class="separator" />
-			<p>Add an icon(<strong>jpg, jpeg, png, gif</strong>) so that customers will be prompted to add your app to their homescreen.</p>
+			<p>
+				Add an icon(<strong>jpg, jpeg, png, gif</strong>) so that customers will be prompted to add your app to their homescreen.<br/><br/>
+				After the icon is added, copy the 'sw.js' file which is located in the 'pwacommerce' plugin directory to the root of your domain '/' using FTP and make sure to enable the <strong>Service Worker Installed</strong> checkbox from the <strong>General Settings</strong> section.
+			</p>
 			<form name="pwacommerce_editimages_form" id="pwacommerce_editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=pwacommerce_editimages&type=upload" method="post" enctype="multipart/form-data">
 
 				<!-- upload icon field -->
@@ -140,17 +145,17 @@ if ( $icon_path != "" ) {
 			</div>
 			<hr class="separator" />
 			<div align="center">
-			<h2>Pre-Order WooCommerce Progressive Web App PRO Now & Save Big!</h2>
+			<h2>Order WooCommerce Progressive Web App PRO Now!</h2>
 			<p>&#9989; 3 Domain Licenses &#9989; Unlimited Web Push Notifications &#9989; 12 Months Priority Support & Product Updates</p>
 			<table> <tbody> <tr> <td><a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/"><img class="aligncenter" src="http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/rLAB49Z.gif" alt="demo"></a></td> <td><a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/"><img class="aligncenter" src="http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/GdyeKjo.gif" alt="demo"></a></td> <td><a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/"><img class="aligncenter" src="http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/3AUek71.gif" alt="demo"></a></td> </tr> </tbody> </table>
 
 			<ul>
 				<li><strong>&#9758; WEB PUSH NOTIFICATIONS &#9756;</strong> <br/> <p>Remind or re-engage your mobile users even after they leave your app. Web push notifications can help you increase engagement by 4X and those users spend twice as much time on the app.</p></li>
 				<li><strong>&#9758; IMPROVED CONVERSIONS &#9756;</strong> <br/> <p>Alibaba.com is the world’s largest online business-to-business (B2B) trading platform, serving 200+ countries and regions. After upgrading their site to a Progressive Web App (PWA), they saw a 76 percent increase in total conversions across browsers.</p></li>
-				<li><strong>&#9758; OFF-LINE MODE &#9756;</strong> <br/> <p>53% of users will abandon a site if it takes longer than 3 seconds to load! The mobile app theme responds quickly to user interactions with silky smooth animations and no janky scrolling</p></li>
+				<li><strong>&#9758; OFFLINE MODE &#9756;</strong> <br/> <p>53% of users will abandon a site if it takes longer than 3 seconds to load! The mobile app theme responds quickly to user interactions with silky smooth animations and no janky scrolling</p></li>
 			</ul>
 
-			<a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/" id="pwacommerce_settings_send_btn" class="button button-primary button-large">Pre-Order PRO Now</a>
+			<a href="http://pwacommerce.com/downloads/progressive-web-app-for-woocommerce-pro/" id="pwacommerce_settings_send_btn" class="button button-primary button-large">Order PRO Now</a>
 			</div>
 		</div>
 		<div class="right-side">
