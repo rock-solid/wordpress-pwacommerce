@@ -40,11 +40,13 @@ $config_json = wp_json_encode( $config );
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#a333c8">
-    <link rel="manifest" href="<?php echo  $api_url . 'export-manifest/' ?>">
+    <link rel="shortcut icon" href="/favicon.ico">
 	<?php if ( $app_settings['icon'] != '' ): ?>
 		<link rel="apple-touch-icon" href="<?php echo $app_settings['icon'];?>" />
     <?php endif;?>
-    <link rel="shortcut icon" href="/favicon.ico">
+
+	<link rel="manifest" href="<?php echo  $api_url . 'export-manifest/' ?>">
+
     <title><?php echo esc_html($site_name); ?></title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css">
     <script type="text/javascript" pagespeed_no_defer="">
@@ -52,13 +54,13 @@ $config_json = wp_json_encode( $config );
             config: <?php echo $config_json ?>
         }
     </script>
-    <link href="<?php echo $theme_path;?>css/app.css" rel="stylesheet">
+	<link href="<?php echo $theme_path;?>css/main.ce5e7d76.css" rel="stylesheet">
 </head>
 
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root" style="height:100%"></div>
-    <script type="text/javascript" src="<?php echo $theme_path;?>js/app.js"></script>
+	<script type="text/javascript" src="<?php echo $theme_path;?>js/main.0e19e005.js"></script>
 </body>
 
 <?php if ($app_settings['service_worker_installed'] === '1'): ?>
