@@ -1,9 +1,9 @@
 === PWACommerce - WooCommerce Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps ===
 Contributors: cborodescu, anghelalexandra, abarbulescu
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create e-commerce app, ios app, make an app, mobile app plugin, mobile application, mobile woocommerce app, mobile converter, mobile plugin, native app plugin, ecommere app theme, woocommerce to mobile app, woocommerce android, woocommerce app, woocommerce iphone, woocommerce mobile, woocommerce mobile app
-Requires at least: 4.4
-Tested up to: 4.9.6
-Stable tag: 0.1
+Requires at least: 4.8
+Tested up to: 4.9.8
+Stable tag: 0.5
 Requires PHP: 5.4
 License: GPLv2 or later
 
@@ -48,7 +48,7 @@ Have fun on your mobile adventures.
 
 == Installation ==
 
-= Simple installation for WordPress v3.6 and later =
+= Simple installation for WordPress v4.8 and later =
 
 1.  Go to the 'Plugins' / 'Add new' menu
 1.	Upload pwacommerce.zip then press 'Install now'.
@@ -96,6 +96,17 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 
 
 == Changelog ==
+
+= 0.5 =
+* Search products
+* Infinite scroll for categories & products list
+* Open product or category details at image tap
+* Add 512 x 512 icon size for the app manifest
+* Bug fix - shop name not wrapping in the top bar
+* Bug fix - cart products maintain their order when quantity is edited
+* Bug fix - cart total (sum)
+* Bug fix - prices displayed in the cart are rounded to two decimals
+* Upgrade WooCommerce API wrapper and Mobile Detect library to the latest versions
 
 = 0.1 =
 * Initial release

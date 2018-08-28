@@ -1,24 +1,23 @@
-PWACommerce - WooCommerce Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps
-=================
+# PWACommerce - WooCommerce Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps
 
 Turn your [WooCommerce](https://woocommerce.com/) site into a [Progressive Web App](http://pwacommerce.com)!
 
 DEMO: [https://pwa-woo.wpmobilepack.com](https://pwa-woo.wpmobilepack.com)
 
- &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/rLAB49Z.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/GdyeKjo.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/3AUek71.gif) &nbsp; &nbsp;  &nbsp; &nbsp;
-
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/rLAB49Z.gif) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/GdyeKjo.gif) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/pwa-theme-woocommerce/3AUek71.gif) &nbsp; &nbsp; &nbsp; &nbsp;
 
 Requires at least: **WordPress 4.8**
 
 Tested up to: **WordPress 4.9.6**
 
-Stable tag: **0.1**
+Stable tag: **0.5**
 
 WooCommerce mobile plugin to package your online store into a Progressive Web App. Multiple WooCommerce Mobile App Themes Available.
 
 This plugin is also available in the WordPress repository: https://wordpress.org/plugins/pwacommerce/
 
 ## Description
+
 PWACommerce is a mobile plugin that helps you transform your WooCommerce shop into a progressive mobile web application. It comes with multiple ecommerce app themes that you can purchase individually or as a bundle.
 
 PWACommerce is supported on iOS and Android smartphones and tablets. Compatible browsers: Safari, Google Chrome, Android – Native Browser.
@@ -40,7 +39,6 @@ Some of the key features of progressive web apps are:
 - **App Themes**. You can offer your users an exceptional buying experience by giving them a mobile web application with a native app-like look & feel. The default theme comes with basic features/options, but more app themes will be made available at PWACommerce.com.
 
 - **Analytics**. PWACommerce easily integrates with Google Analytics.
-
 
 PWACommerce also comes with a **PRO version** suitable for online stores that want to take full advantage of the Progressive Web App technology and increase engagement and conversions. Some of the benefits of using the PRO edition are:
 
