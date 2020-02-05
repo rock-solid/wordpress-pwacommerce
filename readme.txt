@@ -2,8 +2,8 @@
 Contributors: cborodescu, anghelalexandra, abarbulescu
 Tags: pwa, progressive web apps, react, redux, semantic ui, rest api, android, iOS, html5, iphone, mobile, mobile web app, safari, smartphone, webkit, app builder, apple, apps, convert to app, create e-commerce app, ios app, make an app, mobile app plugin, mobile application, mobile woocommerce app, mobile plugin, ecommerce app theme, woocommerce to mobile app, woocommerce android, woocommerce app, woocommerce iphone, woocommerce mobile, woocommerce mobile app
 Requires at least: 4.8
-Tested up to: 4.9.8
-Stable tag: 0.5
+Tested up to: 5.3.2
+Stable tag: 0.5.1
 Requires PHP: 5.4
 License: GPLv2 or later
 
@@ -11,11 +11,15 @@ License: GPLv2 or later
 
 == Description ==
 
+** FEB 2020 UPDATE: A NEW AND IMPROVED, RESPONSIVE, PWACOMMERCE PLUGIN IS COMING SOON. STAY TUNED AT [PWACOMMERCE.COM](https://pwacommerce.com) **
+
+---
+
 **[PWACommerce](https://pwacommerce.com) is a mobile plugin that helps you transform your WooCommerce shop into a progressive mobile web application implemented with React, Redux and Semantic UI. It comes with multiple ecommerce app themes that you can purchase individually or as a bundle.**
 
 PWACommerce is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
-It has been tested on WordPress 4.8 and later.
+It has been tested on WordPress 5.3.2 and later.
 
 What PWACommerce enables you to do:
 
@@ -104,10 +108,13 @@ A responsive theme is all about screen-size: it loads the same styling as the de
 Please refer to this comprehensive article about it: http://pwacommerce.com/building-e-commerce-progressive-web-app-react-woocommerce/.
 
 = Why some 3rd party plugins are not visible on any of the app themes? =
-There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://github.com/appticles/pwa-theme-woocommerce/) if you want to open a feature request.
+There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://github.com/rock-solid/pwa-theme-woocommerce/) if you want to open a feature request.
 
 
 == Changelog ==
+
+= 0.5.1 =
+* Small updates
 
 = 0.5 =
 * Search products
@@ -141,5 +148,5 @@ Our roadmap currently includes:
 
 We currently have two Github development repositories:
 
-* [https://github.com/appticles/pwacommerce](https://github.com/appticles/pwacommerce) - The plugin files, same as you will find for download on WordPress.org.
-* [https://github.com/appticles/pwa-theme-woocommerce](https://github.com/appticles/pwa-theme-woocommerce) - Development files for the Progressive Web App implemented with React, Redux and Semantic UI.
+* [https://github.com/appticles/pwacommerce](https://github.com/rock-solid/pwacommerce) - The plugin files, same as you will find for download on WordPress.org.
+* [https://github.com/appticles/pwa-theme-woocommerce](https://github.com/rock-solid/pwa-theme-woocommerce) - Development files for the Progressive Web App implemented with React, Redux and Semantic UI.

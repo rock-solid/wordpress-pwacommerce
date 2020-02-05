@@ -6,7 +6,7 @@
  * Description: WooCommerce mobile plugin to package your online store into a Progressive Web App.
  * Author: PWAcommerce.com
  * Author URI: http://pwacommerce.com
- * Version: 0.5
+ * Version: 0.5.1
  * Copyright (c) 2017 PWAcommerce.com
  * License: The PWAcommerce plugin is Licensed under the Apache License, Version 3.0
  * Text Domain: pwacommerce
@@ -63,4 +63,3 @@ if ( is_admin() ) {
 		add_action( 'plugins_loaded', 'PWAcommerce\pwacommerce_frontend_init' );
 	}
 }
-
